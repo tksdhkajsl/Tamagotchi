@@ -123,7 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PlayGame.cpp" />
+    <ClCompile Include="Tama.cpp" />
     <ClCompile Include="Tamagotchi.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PlayGame.h" />
+    <ClInclude Include="Tama.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
