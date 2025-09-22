@@ -3,13 +3,14 @@
 #include <iostream>
 #include <stdio.h>
 #include "Tama.h"
+#include "PlayGame.h"
 
 int main()
 {
     system("mode con cols=140 lines=40"); // 콘솔 창 크기 조절
     
-    Tama tama;
-    tama.Play();
+    PlayGame playGame;
+    playGame.PlayTamagotchi();
 
 
 }
