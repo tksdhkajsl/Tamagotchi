@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 struct TamaState
 {
 	int Energy = 50;
@@ -16,19 +16,18 @@ class Tama
 public:
 	Tama();
 
-private:
-
-	// 할 일 선택하기
 
 	// 밥먹기
-
-	
+	void Eating(std::string TamaName);
 
 	// 상점
+	void Restaurant(std::string TamaName);
 
 	// 목욕
+	void TakeBath(std::string TamaName);
 
 	// 잠자기
-
+	void Sleeping(std::string TamaName);
+private:
 };
 

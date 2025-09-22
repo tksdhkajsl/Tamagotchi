@@ -1,16 +1,17 @@
 #include "MiniGame.h"
+#include "PlayGame.h"
 #include "Tama.h"
 #include <random>
 #include <iostream>
+
+// 미니게임 모아두는 곳
 
 enum ChamCham {
     Left = 0,
     Right
 };
 
-TamaState state;
-
-int MiniGame::playChamChamCham()
+int MiniGame::playChamChamCham(TamaState& state)
 {
     int PlayTime = 3;
     //참참참은 총 3번 진행해서 승패 판정
@@ -59,7 +60,7 @@ int MiniGame::playChamChamCham()
     
     if (WinCount >= 2) {
         printf("우와 너의 승리야!!! \n");
-        printf("보상으로 너에게 %.1f만큼의 경험치와 %d만큼의 돈을 줄게..!\n\n", state.Exp, state.Money);
+        printf("보상으로 너에게 %.1f만큼의 경험치와 %d만큼의 돈을 줄게..!\n\n" ,state.Exp, state.Money);
     }
     return 0;
 }

@@ -1,8 +1,10 @@
 #pragma once
+#include "Tama.h"
+
 class MiniGame
 {	// 놀아주기
 	// 1. 참참참
-	int playChamChamCham();
+	int playChamChamCham(TamaState& state);
 
 	// 2. 키보드 따라치기
 	int playTypingChallenge();
