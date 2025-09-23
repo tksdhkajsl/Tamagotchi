@@ -3,22 +3,22 @@
 #include <string>
 #include <iostream>
 #include "PlayGame.h"
+#include <windows.h>
 
 TamaState state;
-
 // 다마고치의 상태 지수, 먹거나 구매하거나 자거나 목욕하는 행동
 
 Tama::Tama()
-{
-}
+{}
 
-void Tama::Eating(std::string TamaName)
+void Tama::Eating(std::string TamaName) // 에너지값 변화가 없음 , 아래 printf 안 출력되고 바로 메뉴창으로 이동
 {
-	printf("%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
+	printf("\t\t\t\t\t%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
 	state.Energy += 5;
+	Sleep(3000);
 }
 
-void Tama::Restaurant(std::string TamaName) // 수정필요
+void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
 {
 	
 	printf("\n\n");
@@ -45,7 +45,7 @@ void Tama::Restaurant(std::string TamaName) // 수정필요
 	switch (WhichFood) {
 	case 1: 
 	{
-		printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str());
+		printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str());  // 안 뜯고 처음 메뉴바로 다시 돌아감
 		state.Energy += 20;
 		state.Happiness += 20;
 	}
@@ -78,8 +78,9 @@ void Tama::Restaurant(std::string TamaName) // 수정필요
 	default:
 		printf("\t\t\t\t\t식당에서 무언가 잘못되었어요.. \n");
 		break;
-	}
 	
+	}
+	Sleep(3000);
 }
 
 void Tama::TakeBath(std::string TamaName)

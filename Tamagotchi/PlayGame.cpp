@@ -83,57 +83,68 @@ int PlayGame::PlayTamagotchi()
         std::cin >> TamaName;
     }
     system("cls");
-    showStatus(state);
-    ShowMenu();
+    display.ShowTamaEgg();
+
+    while (state.Level != 5) {
+        system("cls");
+        showStatus(state);
+        ShowMenu(state);
+    }
 }
 
-void PlayGame::ShowMenu()
+void PlayGame::ShowMenu(TamaState& state)
 {
-    printf("\t\t\t\t\t\t\t+----------------------+\n");
-    printf("\t\t\t\t\t\t\t|      메인 메뉴       |\n");
-    printf("\t\t\t\t\t\t\t+----------------------+\n");
-    printf("\t\t\t\t\t\t\t|  1.밥먹기            |\n");
-    printf("\t\t\t\t\t\t\t|  2.놀아주기          |\n");
-    printf("\t\t\t\t\t\t\t|  3.식당              |\n");
-    printf("\t\t\t\t\t\t\t|  4.목욕하기          |\n");
-    printf("\t\t\t\t\t\t\t|  5.잠자기            |\n");
-    //printf("\t\t\t\t\t\t\t|  6.게임종료          |\n");
-    printf("\t\t\t\t\t\t\t+----------------------+\n");
+        printf("\n\t\t\t\t\t\t\t+----------------------+\n");
+        printf("\t\t\t\t\t\t\t|      메인 메뉴       |\n");
+        printf("\t\t\t\t\t\t\t+----------------------+\n");
+        printf("\t\t\t\t\t\t\t|  1.밥먹기            |\n");
+        printf("\t\t\t\t\t\t\t|  2.놀아주기          |\n");
+        printf("\t\t\t\t\t\t\t|  3.식당              |\n");
+        printf("\t\t\t\t\t\t\t|  4.목욕하기          |\n");
+        printf("\t\t\t\t\t\t\t|  5.잠자기            |\n");
+        //printf("\t\t\t\t\t\t\t|  6.게임종료          |\n");
+        printf("\t\t\t\t\t\t\t+----------------------+\n");
 
-    int ChooseMenu;
-    printf("무엇을 하시겠어요? ");
-    std::cin >> ChooseMenu;
+        int ChooseMenu;
+        printf("\t\t\t\t\t\t\t무엇을 하시겠어요? ");
+        std::cin >> ChooseMenu;
 
-    system("cls"); // 콘솔창 지우고 출력되도록 하기
-    display.TamaEgg();
+        system("cls"); // 콘솔창 지우고 출력되도록 하기
+   
+        showStatus(state);
 
-    switch (ChooseMenu)
-    {
-    case 1:
-        tama.Eating(TamaName);
-        break;
-    case 2:
-        break;
-    case 3:
-        tama.Restaurant(TamaName);
-        break;
-    case 4:
-        tama.TakeBath(TamaName);
-        break;
-    case 5:
-        tama.Sleeping(TamaName);
-        break; 
-    default:
-        printf("메뉴 선택 중 에러가 발생했습니다. \n");
-        break;
-    }
+        switch (ChooseMenu)
+        {
+        case 1:
+            display.ShowEatingTama();
+            tama.Eating(TamaName);
+       
+            break;
+        case 2:
+            break;
+        case 3:
+            
+            tama.Restaurant(TamaName);
+            break;
+        case 4:
+            display.BathTama();
+            tama.TakeBath(TamaName);
+            break;
+        case 5:
+            tama.Sleeping(TamaName);
+            break; 
+        default:
+            printf("메뉴 선택 중 에러가 발생했습니다. \n");
+            break;
+        }
+ 
 
 }
 
 void PlayGame::showStatus(TamaState& state)
 {
     printf("\n");
-    display.ShowTamaEgg();
+    display.ShowUsual();
     printf("\n\t\t   =================================================================================================\n");
     printf("\t\t\t\t\t\t\t   ★다마고치 상태★\n\t\t\t\t\t\t      다마고치 이름 : %s\n", TamaName.c_str());
     printf("\t\t\t\t      에너지 : %d\t행복도 : %d\t경험치 : %.1f\t청결도 : %d\t돈 : %d\n", state.Energy, state.Happiness,state.Exp, state.Clean, state.Money);

@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <string>
 struct TamaState
 {
@@ -7,6 +7,7 @@ struct TamaState
 	float Exp = 50.0f;
 	int Clean = 50;
 	int Money = 20;
+	int Level = 1;
 
 	TamaState() = default;
 };
@@ -17,17 +18,16 @@ public:
 	Tama();
 
 
-	// ¹ä¸Ô±â
+	//ë°¥ ë¨¹ê¸°
 	void Eating(std::string TamaName);
 
-	// »óÁ¡
+	// ì‹ë‹¹
 	void Restaurant(std::string TamaName);
 
-	// ¸ñ¿å
+	// ëª©ìš•í•˜ê¸°
 	void TakeBath(std::string TamaName);
 
-	// ÀáÀÚ±â
+	// ì ìê¸°
 	void Sleeping(std::string TamaName);
 private:
 };
-
