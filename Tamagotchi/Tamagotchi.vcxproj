@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Display.cpp" />
     <ClCompile Include="MiniGame.cpp" />
     <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="Tama.cpp" />
     <ClCompile Include="Tamagotchi.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Display.h" />
     <ClInclude Include="MiniGame.h" />
     <ClInclude Include="PlayGame.h" />
     <ClInclude Include="Tama.h" />

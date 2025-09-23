@@ -1,5 +1,6 @@
 #pragma once
 #include "Tama.h"
+#include "Display.h"
 
 
 
@@ -11,6 +12,8 @@ public:
 	int PlayTamagotchi();
 
 private:
+	
+
 	// 메뉴 보여주기
 	void ShowMenu();
 
@@ -18,5 +21,6 @@ private:
 	void showStatus(TamaState& state);
 
 	Tama tama;
+	Display display;
 };
 
