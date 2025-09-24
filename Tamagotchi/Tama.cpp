@@ -20,19 +20,22 @@ void Tama::Eating(std::string TamaName) // 에너지값 변화가 없음 , 아�
 
 void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
 {
-	
+
 	printf("\n\n");
-	printf("\t\t\t\t\t+---------------------------------------------------------------+\n");
-	printf("\t\t\t\t\t|    물건  목록      |   가격  |              효과              |\n");
-	printf("\t\t\t\t\t+---------------------------------------------------------------+\n");
-	printf("\t\t\t\t\t|   1. 주먹밥        |   20$   |   에너지 + 20                  |\n");
-	printf("\t\t\t\t\t|   2. 떡볶이        |   50$   |   에너지 + 50    행복도 + 30   |\n");
-	printf("\t\t\t\t\t|   3. 딸기맛 젤리   |    5$   |                  행복도 + 15   |\n");
-	printf("\t\t\t\t\t|   4. 초코 쿠키     |   10$   |   에너지 + 10    행복도 + 20   |\n");
-	printf("\t\t\t\t\t|   5. 식당 나가기   |         |                                |\n");
-	printf("\t\t\t\t\t+---------------------------------------------------------------+\n");
+	printf("\t\t\t\t +---------------------------------------------------------------+\n");
+	printf("\t\t\t\t |    물건  목록      |   가격  |              효과              |\n");
+	printf("\t\t\t\t +---------------------------------------------------------------+\n");
+	printf("\t\t\t\t |   1. 주먹밥        |   20$   |   에너지 + 20                  |\n");
+	printf("\t\t\t\t |   2. 떡볶이        |   50$   |   에너지 + 50    행복도 + 30   |\n");
+	printf("\t\t\t\t |   3. 딸기맛 젤리   |    5$   |                  행복도 + 15   |\n");
+	printf("\t\t\t\t |   4. 초코 쿠키     |   10$   |   에너지 + 10    행복도 + 20   |\n");
+	printf("\t\t\t\t |   5. 식당 나가기   |         |                                |\n");
+	printf("\t\t\t\t +---------------------------------------------------------------+\n");
 	
 	int WhichFood = 0;
+	while (WhichFood != 5) {
+
+
 	printf("\t\t\t\t\t어떤 음식을 구매하시겠어요? ");
 	std::cin >> WhichFood;
 
@@ -45,14 +48,16 @@ void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
 	switch (WhichFood) {
 	case 1: 
 	{
-		printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str());  // 안 뜯고 처음 메뉴바로 다시 돌아감
+
+		printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str()); 
+		printf("남은 소지금 : %4d\n", state.Money);
 		state.Energy += 20;
 		state.Happiness += 20;
 	}
 		break;
 	case 2:
 	{
-		printf("\t\t\t\t\t%s이/가 식당에서 떡볶이를 먹습니다. + 에너지 50 + 행복도 30  \n", TamaName.c_str());
+		printf("\t\t\t\t%s이/가 식당에서 떡볶이를 먹습니다. + 에너지 50 + 행복도 30  \n", TamaName.c_str());
 		state.Energy += 50;
 		state.Happiness += 30;
 	}
@@ -65,7 +70,7 @@ void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
 		break;
 	case 4:
 	{
-		printf("\t\t\t\t\t%s이/가 식당에서 초코 쿠키를 먹습니다. + 에너지 10 + 행복도 20  \n", TamaName.c_str());
+		printf("\t\t\t\t%s이/가 식당에서 초코 쿠키를 먹습니다. + 에너지 10 + 행복도 20  \n", TamaName.c_str());
 		state.Energy += 10;
 		state.Happiness += 20;
 	}
@@ -80,17 +85,20 @@ void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
 		break;
 	
 	}
-	Sleep(2000);
+	Sleep(1200);
+	}
 }
 
 void Tama::TakeBath(std::string TamaName)
 {
-	printf("%s이/가 목욕합니다. + 청결도 50 \n", TamaName.c_str());
+	printf("\n\t\t\t\t\t\t%s이/가 목욕합니다. + 청결도 50 \n", TamaName.c_str());
 	state.Clean += 50;
+	Sleep(1200);
 }
 
 void Tama::Sleeping(std::string TamaName)
 {
-	printf("%s이/가 잠을 잡니다. + 에너지 20 \n", TamaName.c_str());
+	printf("\n\t\t\t\t\t\t%s이/가 잠을 잡니다. + 에너지 20 \n", TamaName.c_str());
 	state.Energy += 20;
+	Sleep(1200);
 }

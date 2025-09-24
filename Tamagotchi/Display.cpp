@@ -36,20 +36,20 @@ void Display::ShowTamaEgg()
 {
 	system("cls");
 	TamaEgg();
-	Sleep(600);
+	Sleep(450);
 	system("cls");
 	TamaEgg1();
-	Sleep(600);
+	Sleep(450);
 	system("cls");
 	TamaEgg2();
-	Sleep(600);
+	Sleep(450);
 	system("cls");
 	TamaEgg1();
-	Sleep(600);
+	Sleep(450);
 	system("cls");
 	TamaEgg();
-	printf("\n\t\t\t\t\t\t\t★다마고치가 알에서 깨어나요!!★");
-	Sleep(800);
+	printf("\n\t\t\t\t\t\t   ★다마고치가 알에서 깨어나요!!★");
+	Sleep(900);
 	system("cls");
 	ShowUsual();
 }

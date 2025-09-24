@@ -1,8 +1,5 @@
 #include "PlayGame.h"
 #include <stdio.h>
-#include "Tama.h"
-#include "MiniGame.h"
-#include "Display.h"
 #include <string>
 #include <iostream>
 #include <windows.h>
@@ -79,7 +76,7 @@ int PlayGame::PlayTamagotchi()
         return 0;
     }
     else if (StartORNo == "Yes" || StartORNo == "YES" || StartORNo == "Y" || StartORNo == "y" || StartORNo == "yes") {
-        printf("\n\t\t\t\t\t\t\t\t이름을 지어주세요!");
+        printf("\n\t\t\t\t\t\t\t   이름을 지어주세요! ");
         std::cin >> TamaName;
     }
     system("cls");
@@ -106,31 +103,38 @@ void PlayGame::ShowMenu(TamaState& state)
         printf("\t\t\t\t\t\t\t+----------------------+\n");
 
         int ChooseMenu;
-        printf("\t\t\t\t\t\t\t무엇을 하시겠어요? ");
+        printf("\t\t\t\t\t\t\t   무엇을 하시겠어요? ");
         std::cin >> ChooseMenu;
 
-        system("cls"); // 콘솔창 지우고 출력되도록 하기
-   
-        showStatus(state);
+        //showStatus(state);
 
         switch (ChooseMenu)
         {
         case 1:
+            system("cls");
             display.ShowEatingTama();
             tama.Eating(TamaName);
        
             break;
         case 2:
+            system("cls");
+            display.ShowUsual();
+            minigame.ShowMiniGame(TamaName);
             break;
         case 3:
-            
+            system("cls");
+
+            display.ShowUsual();
             tama.Restaurant(TamaName);
             break;
         case 4:
+            system("cls");
             display.BathTama();
             tama.TakeBath(TamaName);
             break;
         case 5:
+            system("cls");
+            display.SleepingTama();
             tama.Sleeping(TamaName);
             break; 
         default:
@@ -146,10 +150,10 @@ void PlayGame::showStatus(TamaState& state)
     printf("\n");
     display.ShowUsual();
     printf("\n\t\t\t=================================================================================================\n");
-    printf("\t\t\t\t\t\t\t   ★다마고치 상태★");
+    printf("\t\t\t\t\t\t\t     ★다마고치 상태★");
     printf("\n\t\t\t-------------------------------------------------------------------------------------------------\n");
     printf("\t\t\t\t\t\t다마고치 이름: %6s \t\tLV.%d\n", TamaName.c_str(),state.Level);
-    printf("\t\t\t\t      에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : %3d\t돈 : %3d\n", state.Energy, state.Happiness,state.Exp, state.Clean, state.Money);
+    printf("\t\t\t\t     에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : %3d\t돈 : %4d\n", state.Energy, state.Happiness,state.Exp, state.Clean, state.Money);
     //printf ( "\t\t\t\t\t\t\t에너지     :     %d\n" , Energy );
     //printf ( "\t\t\t\t\t\t\t행복도     :     %d\n" ,Happiness );
     //printf ( "\t\t\t\t\t\t\t경험치     :     %.1f\n",Exp );

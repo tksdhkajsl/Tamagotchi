@@ -1,6 +1,7 @@
 #pragma once
 #include "Tama.h"
 #include "Display.h"
+#include "MiniGame.h"
 
 
 
@@ -24,6 +25,6 @@ private:
 	Tama tama;
 	Display display;
 	TamaState state;
-
+	MiniGame minigame;
 };
 
