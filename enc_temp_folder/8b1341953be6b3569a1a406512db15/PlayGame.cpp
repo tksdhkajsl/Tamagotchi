@@ -79,7 +79,7 @@ int PlayGame::PlayTamagotchi()
         return 0;
     }
     else if (StartORNo == "Yes" || StartORNo == "YES" || StartORNo == "Y" || StartORNo == "y" || StartORNo == "yes") {
-        printf("\n\t\t\t\t\t\t\t\t이름을 지어주세요!");
+        printf("\n\t\t\t\t\t\t\t이름을 지어주세요! (영어로) ");
         std::cin >> TamaName;
     }
     system("cls");
@@ -147,7 +147,7 @@ void PlayGame::showStatus(TamaState& state)
     display.ShowUsual();
     printf("\n\t\t\t=================================================================================================\n");
     printf("\t\t\t\t\t\t\t   ★다마고치 상태★");
-    printf("\n\t\t\t-------------------------------------------------------------------------------------------------\n");
+    printf("\n\t\t\t-------------------------------------------------------------------------------------------------\n\n");
     printf("\t\t\t\t\t\t다마고치 이름: %6s \t\tLV.%d\n", TamaName.c_str(),state.Level);
     printf("\t\t\t\t      에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : %3d\t돈 : %3d\n", state.Energy, state.Happiness,state.Exp, state.Clean, state.Money);
     //printf ( "\t\t\t\t\t\t\t에너지     :     %d\n" , Energy );

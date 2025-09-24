@@ -36,19 +36,19 @@ void Display::ShowTamaEgg()
 {
 	system("cls");
 	TamaEgg();
-	Sleep(800);
+	Sleep(600);
 	system("cls");
 	TamaEgg1();
-	Sleep(800);
+	Sleep(600);
 	system("cls");
 	TamaEgg2();
-	Sleep(800);
+	Sleep(600);
 	system("cls");
 	TamaEgg1();
-	Sleep(800);
+	Sleep(600);
 	system("cls");
 	TamaEgg();
-	printf("\t\t\t\t\t   다마고치가 알에서 깨어나요!!");
+	printf("\n\t\t\t\t\t\t\t★다마고치가 알에서 깨어나요!!★");
 	Sleep(800);
 	system("cls");
 	ShowUsual();
@@ -166,13 +166,13 @@ void Display::ShowEatingTama()
 {
 	system("cls");
 	EatingTama1();
-	Sleep(500);
+	Sleep(300);
 	system("cls");
 	EatingTama2();
-	Sleep(500);
+	Sleep(300);
 	system("cls");
 	EatingTama1();
-	Sleep(500);
+	Sleep(300);
 	system("cls");
 	EatingTama2();
 }
@@ -487,5 +487,6 @@ void Display::EvolutionShow()
 	Sleep(300);
 	system("cls");
 	BigStar();
+	printf("\t\t\t\t\t\t\t다마고치가 모두 자랐어요!! 게임 끝!! \n\n\n\n");
 }
 

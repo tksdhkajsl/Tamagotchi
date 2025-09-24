@@ -7,7 +7,7 @@
 
 int main()
 {
-    system("mode con cols=140 lines=45"); // 콘솔 창 크기 조절
+    system("mode con cols=140 lines=50"); // 콘솔 창 크기 조절
     
     PlayGame playGame;
     playGame.PlayTamagotchi();

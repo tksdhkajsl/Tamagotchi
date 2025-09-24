@@ -15,7 +15,7 @@ void Tama::Eating(std::string TamaName) // 에너지값 변화가 없음 , 아�
 {
 	printf("\n\t\t\t\t\t\t%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
 	state.Energy += 5;
-	Sleep(2000);
+	Sleep(1200);
 }
 
 void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
