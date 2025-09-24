@@ -13,9 +13,9 @@ Tama::Tama()
 
 void Tama::Eating(std::string TamaName) // 에너지값 변화가 없음 , 아래 printf 안 출력되고 바로 메뉴창으로 이동
 {
-	printf("\t\t\t\t\t%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
+	printf("\n\t\t\t\t\t\t%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
 	state.Energy += 5;
-	Sleep(3000);
+	Sleep(2000);
 }
 
 void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
@@ -80,7 +80,7 @@ void Tama::Restaurant(std::string TamaName) // 값 변화, 금액 지불 부분
 		break;
 	
 	}
-	Sleep(3000);
+	Sleep(2000);
 }
 
 void Tama::TakeBath(std::string TamaName)

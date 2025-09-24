@@ -145,15 +145,15 @@ void PlayGame::showStatus(TamaState& state)
 {
     printf("\n");
     display.ShowUsual();
-    printf("\n\t\t   =================================================================================================\n");
-    printf("\t\t\t\t\t\t\t   ★다마고치 상태★\n\t\t\t\t\t\t      다마고치 이름 : %s\n", TamaName.c_str());
+    printf("\n\t\t\t   =================================================================================================\n");
+    printf("\t\t\t\t\t\t\t   ★다마고치 상태★\n\t\t\t\t\t\t\t      다마고치 이름 : %s\n", TamaName.c_str());
     printf("\t\t\t\t      에너지 : %d\t행복도 : %d\t경험치 : %.1f\t청결도 : %d\t돈 : %d\n", state.Energy, state.Happiness,state.Exp, state.Clean, state.Money);
     //printf ( "\t\t\t\t\t\t\t에너지     :     %d\n" , Energy );
     //printf ( "\t\t\t\t\t\t\t행복도     :     %d\n" ,Happiness );
     //printf ( "\t\t\t\t\t\t\t경험치     :     %.1f\n",Exp );
     //printf ( "\t\t\t\t\t\t\t청결도     :     %d\n",Clean);
     //printf("\t\t\t\t\t\t\t========================\n");
-    printf("\t\t   =================================================================================================\n\n");
+    printf("\t\t\t   =================================================================================================\n\n");
 }
 
 
