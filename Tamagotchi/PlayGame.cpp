@@ -156,4 +156,9 @@ void PlayGame::showStatus(TamaState& state)
     printf("\t\t\t   =================================================================================================\n\n");
 }
 
+void PlayGame::Evolution()
+{
+    display.EvolutionShow();
+}
+
 

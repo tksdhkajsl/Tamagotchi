@@ -15,6 +15,8 @@ public:
 
 	// 다마고치 상태표 보여주기
 	void showStatus(TamaState& state);
+
+	void Evolution();
 private:
 	
 	

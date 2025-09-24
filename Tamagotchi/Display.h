@@ -38,6 +38,13 @@ public:
 	// 더러운 모습
 	void DirtyTama();
 
+	// 큰별모양
+	void BigStar();
+
+	// 작은별모야
+	void LitterStar();
+
+	void EvolutionShow();
 
 
 };
