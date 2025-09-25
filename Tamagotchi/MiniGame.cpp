@@ -49,7 +49,8 @@ GAMEREWARDS reward;
 void MiniGame::ShowMiniGame(TamaState& state)
 {    
     WhichGame = ' ';
-
+    system("cls");
+    d.ShowUsual();
     while (WhichGame != '4') {
         printf("\n\t\t\t\t\t\t\t+------------------------+\n");
         printf("\t\t\t\t\t\t\t|       게임 메뉴        |\n");
@@ -355,12 +356,157 @@ int MiniGame::playTypingChallenge(TamaState& state)
 
 int MiniGame::playTreasureHunt(TamaState& state)
 {
+    system("cls");
+    d.TresureHunt();
     state.Energy -= reward.TreasureEnergyLoss;
     state.Energy = tama.LimitState(state.Energy);
 
-    int LimitMove = rand() & 10 + 1;
+    int LimitMove = rand() & 10 + 1; // 랜덤한 보물찾기 위치
+    int PlayerMove = 0; // 플레이어가 이동한 횟수
+    int RandomEvent = -1; // 이동 후 발생하는 무언가 있다 없다 랜덤한 이벤트
+    int RandomEvent2 = -1; // 무언가 있을때 확인해보았을때 랜덤한 이벤트
+    int RandomTreasureEvent = 0; // 보물상자 랜덤
+    int PlayerSelect = -1; // 이동하기, 그만두기 행동
+    int PlayerSelect2 = -1; // 무언가를 열어보기, 그만두기 행동
 
     printf("\n\t\t\t\t\t\t보물찾기 시간~!!!\n");
+    while (LimitMove >= PlayerMove || PlayerSelect!= 0) {
+        printf("\t\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
+        std::cin >> PlayerSelect;
+
+        while (PlayerSelect != 1 && PlayerSelect != 0) {
+            printf("\t\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
+            std::cin >> PlayerSelect;
+        }
+       
+        RandomTreasureEvent = rand() % 3 + 1;
+        int RandomReward = rand() % 40 + 10; // 보물상자를 열었을때 10~50 사이의 경험치 또는 돈을 줄 예정
+
+       if (PlayerSelect == 1) {
+            printf("\t\t\t\t\t\t다마고치가 이동중이야..!\n");
+            PlayerMove++;
+            if (PlayerMove == LimitMove) {
+                // 보물이 있는 위치
+                printf("\t\t\t\t\t\t보물 상자를 발견했어!!!!\n");
+                printf("\t\t\t\t\t\t보물 상자를 열어보니 ");
+                switch (RandomTreasureEvent) {
+                case 1:
+                {
+                    printf("%d의 경험치가 나왔어!!!!\n", RandomReward);
+                    state.Exp += RandomReward;
+                    Sleep(1000);
+                    return 0;
+                }
+                break;
+                case 2:
+                {
+                    printf("%d의 돈이 나왔어!!!!\n", RandomReward);
+                    state.Money += RandomReward;
+                    Sleep(1000);
+                    return 0;
+                }
+                    break;
+                case 3:
+                {
+                    printf("아무것도 없당.....!\n\t\t\t\t\t\t다음 기회를 노려보자...!\n");
+                    Sleep(1000);
+                    return 0;
+                }
+                    break;
+                default:
+                    break;
+                }
+            }
+            else {
+                // 가는 길
+                RandomEvent = rand() % 2 + 1;
+                int SmallReward = rand() % 5 + 5; // 5~10 사이의 길에서 줍는 자그마한 보상
+                switch (RandomEvent) {
+                case 1:
+                {
+                    printf("\t\t\t\t\t\t아무것도 없다..!\n");
+                }
+                break;
+                case 2:
+                {
+                    RandomEvent2 = rand() % 7 + 1;
+                    printf("\t\t\t\t\t\t무언가가 있다..!\n");
+                    printf("\t\t\t\t\t\t열어보려면 1번, 무시하려면 2번 : ");
+                    std::cin >> PlayerSelect2;
+                   
+                    if (PlayerSelect2 == 1) {
+                        switch (RandomEvent2) {
+                        case 1:
+                        { 
+                            printf("\t\t\t\t\t\t대애박 돈을 주웠다!!!!..! + 돈 %d\n", SmallReward);
+                            state.Money += SmallReward;
+                        }
+                        break;
+                        case 2:
+                        {
+                            printf("\t\t\t\t\t\t귀여운 고양이를 보았다!! + 행복 %d \n", SmallReward);
+                            state.Happiness += SmallReward;
+                        }
+                        break;
+                        case 3:
+                        {
+                            printf("\t\t\t\t\t\t시원한 호수를 보았다 수영해볼까?! + 청결도 %d \n", SmallReward);
+                            state.Clean += SmallReward;
+                        }
+                        break;
+                        case 4:
+                        {
+                            printf("\t\t\t\t\t\t앗.. 늪이었잖아.....  - 청결도 %d \n", SmallReward);
+                            state.Clean -= SmallReward;
+                            if (state.Clean < 0) {
+                                state.Clean = 0;
+                            }
+                        }
+                        break;
+                        case 5:
+                        {
+                            printf("\t\t\t\t\t\t하수구에 돈을 빠트렸어... - 돈 %d \n", SmallReward);
+                            state.Money -= SmallReward;
+                            if (state.Money < 0) {
+                                state.Money = 0;
+                            }
+                        }
+                        break;
+                        case 6:
+                        {
+                            printf("\t\t\t\t\t\t벌레를 보았어... 기분 나빠 - 행복 %d \n", SmallReward);
+                            state.Happiness -= SmallReward;
+                            if (state.Happiness < 0) {
+                                state.Happiness = 0;
+                            }
+                        }
+                        break;
+                        case 7:
+                        {
+                            printf("\t\t\t\t\t\t자세히 보니 아무것도 없었어.. \n");
+                        }
+                        break;
+                        default:
+                            break;
+                        }
+                    }
+                    else if (PlayerSelect2 == 0) {
+                        break;
+                    }
+                }
+                    break;
+                default:
+                    break;
+                }
+            }
+           
+           
+        }
+        else if (PlayerSelect == 0)
+        {
+            break;
+        }
+    }
 
 
     return 0;

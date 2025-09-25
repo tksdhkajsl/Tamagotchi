@@ -43,5 +43,7 @@ public:
 
 	// 게임실패시 (다마고치 죽음)
 	void GameOver();
+
+	void TresureHunt();
 };
 
