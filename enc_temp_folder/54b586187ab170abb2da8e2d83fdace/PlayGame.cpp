@@ -135,7 +135,7 @@ void PlayGame::ShowMenu(TamaState& state)
             break;
         case 5:
             printf("\t\t\t\t 에너지가 20 이하일 때 자면 다마고치가 피곤해요...\n");
-            Sleep(1200);
+            Sleep(1000);
             system("cls");
             display.SleepingTama();
             tama.Sleeping(TamaName,state);
