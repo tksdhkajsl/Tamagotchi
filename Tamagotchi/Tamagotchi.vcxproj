@@ -131,7 +131,9 @@
     <ClCompile Include="ReactionGame.cpp" />
     <ClCompile Include="Tama.cpp" />
     <ClCompile Include="TamaEating.cpp" />
-    <ClCompile Include="Tamagotchi.cpp" />
+    <ClCompile Include="Tamagotchi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="TypingGame.cpp" />
   </ItemGroup>
   <ItemGroup>

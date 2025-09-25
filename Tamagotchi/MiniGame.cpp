@@ -52,15 +52,15 @@ void MiniGame::ShowMiniGame(TamaState& state)
     system("cls");
     d.ShowUsual();
     while (WhichGame != '4') {
-        printf("\n\t\t\t\t\t\t\t+------------------------+\n");
-        printf("\t\t\t\t\t\t\t|       게임 메뉴        |\n");
-        printf("\t\t\t\t\t\t\t+------------------------+\n");
-        printf("\t\t\t\t\t\t\t|  남은 게임 횟수 : %d번  |\n", state.GameLimit);
-        printf("\t\t\t\t\t\t\t|  1. 참참참             |\n");
-        printf("\t\t\t\t\t\t\t|  2. 키보드 따라치기    |\n");
-        printf("\t\t\t\t\t\t\t|  3. 보물 찾기          |\n");
-        printf("\t\t\t\t\t\t\t|  4. 게임 종료          |\n");
-        printf("\t\t\t\t\t\t\t+------------------------+\n");
+        printf("\n\t\t\t\t\t\t+----------------------------------+\n");
+        printf("\t\t\t\t\t\t|             게임 메뉴            |\n");
+        printf("\t\t\t\t\t\t+----------------------------------+\n");
+        printf("\t\t\t\t\t\t|      남은 게임 횟수 : %d번        |\n", state.GameLimit);
+        printf("\t\t\t\t\t\t|  1. 참참참 (-10 에너지)          |\n");
+        printf("\t\t\t\t\t\t|  2. 키보드 따라치기 (-15 에너지) |\n");
+        printf("\t\t\t\t\t\t|  3. 보물 찾기 (-30 에너지)       |\n");
+        printf("\t\t\t\t\t\t|  4. 게임 종료                    |\n");
+        printf("\t\t\t\t\t\t+----------------------------------+\n");
         printf("\t\t\t\t\t무슨 게임을 하시겠어요? ");
         std::cin >> WhichGame;
 
@@ -361,7 +361,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
     state.Energy -= reward.TreasureEnergyLoss;
     state.Energy = tama.LimitState(state.Energy);
 
-    int LimitMove = rand() & 10 + 1; // 랜덤한 보물찾기 위치
+    int LimitMove = rand() & 4 + 2; // 랜덤한 보물찾기 위치 2 ~ 6
     int PlayerMove = 0; // 플레이어가 이동한 횟수
     int RandomEvent = -1; // 이동 후 발생하는 무언가 있다 없다 랜덤한 이벤트
     int RandomEvent2 = -1; // 무언가 있을때 확인해보았을때 랜덤한 이벤트
@@ -370,7 +370,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
     int PlayerSelect2 = -1; // 무언가를 열어보기, 그만두기 행동
 
     printf("\n\t\t\t\t\t\t보물찾기 시간~!!!\n");
-    while (LimitMove >= PlayerMove || PlayerSelect!= 0) {
+    while (LimitMove > PlayerMove || PlayerSelect!= 0) {
         printf("\t\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
         std::cin >> PlayerSelect;
 
