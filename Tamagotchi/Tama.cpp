@@ -8,8 +8,10 @@
 TamaState state;
 // 다마고치의 상태 지수, 먹거나 구매하거나 자거나 목욕하는 행동
 
-Tama::Tama()
-{}
+
+Tama::~Tama()
+{
+}
 
 void Tama::Eating(std::string TamaName) // 에너지값 변화가 없음 , 아래 printf 안 출력되고 바로 메뉴창으로 이동
 {

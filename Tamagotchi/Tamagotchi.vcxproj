@@ -127,6 +127,7 @@
     <ClCompile Include="MiniGame.cpp" />
     <ClCompile Include="PlayGame.cpp" />
     <ClCompile Include="Tama.cpp" />
+    <ClCompile Include="TamaAction.cpp" />
     <ClCompile Include="Tamagotchi.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="MiniGame.h" />
     <ClInclude Include="PlayGame.h" />
     <ClInclude Include="Tama.h" />
+    <ClInclude Include="TamaAction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

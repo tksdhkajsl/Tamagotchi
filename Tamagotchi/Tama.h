@@ -15,7 +15,8 @@ struct TamaState
 class Tama
 {
 public:
-	Tama();
+	Tama()=default;
+	~Tama();
 
 
 	//밥 먹기
