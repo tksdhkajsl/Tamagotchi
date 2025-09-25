@@ -4,6 +4,7 @@
 #include <iostream>
 #include <windows.h>
 
+const int MAXLEVEL = 5;
 
 // 로고나 메뉴창, 다마고치 상태창을 출력하는 곳
 
@@ -16,22 +17,6 @@ int PlayGame::PlayTamagotchi()
 {
 
     TamaState state;
-
-    //printf("★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆\n");
-    ////printf("□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□\n");
-    //printf("□□□□□□□□□□□□□■■■□□□□□□□□□□□□□□□■■■□□□□■■■■■■■■■■■□□□□□□■■■□□□□□□■■■□□□\n");
-    //printf("□□□■■■■■■■■□□■■■□□□□■■■■■■■■■□□■■■□□□□■■■■■■■■■■■□□□□□□■■■□□□□□□■■■□□□\n");
-    //printf("□□□■■■■■■■■□□■■■□□□□■■■■■■■■■□□■■■□□□□□□□□□□□□■■■□□■■■■■■■■■■■□□■■■□□□\n");
-    //printf("□□□■■■□□□□□□□■■■□□□□■■■□□□■■■□□■■■□□□□□□□□□□□□■■■□□■■■■■■■■■■■□□■■■□□□\n");
-    //printf("□□□■■■□□□□□□□■■■■■□□■■■□□□■■■□□■■■■■□□□□□□□□□□■■■□□□□□■■■■■□□□□□■■■□□□\n");
-    //printf("□□□■■■□□□□□□□■■■■■□□■■■□□□■■■□□■■■■■□□□□□□□□□□■■■□□□□■■■□■■■□□□□■■■□□□\n");
-    //printf("□□□■■■□□□□□□□■■■■■□□■■■□□□■■■□□■■■■■□□□□□■■■□□■■■□□□■■■□□□■■■□□□■■■□□□\n");
-    //printf("□□□■■■□□□□□□□■■■□□□□■■■□□□■■■□□■■■□□□□□□□■■■□□■■■□□■■■□□□□□■■■□□■■■□□□\n");
-    //printf("□□□■■■■■■■■□□■■■□□□□■■■■■■■■■□□■■■□□□□□□□■■■□□□□□□□■■■□□□□□■■■□□■■■□□□\n");
-    //printf("□□□■■■■■■■■□□■■■□□□□■■■■■■■■■□□■■■□□□□■■■■■■■■■■■□□□□□□□□□□□□□□□■■■□□□\n");
-    //printf("□□□□□□□□□□□□□■■■□□□□□□□□□□□□□□□■■■□□□□■■■■■■■■■■■□□□□□□□□□□□□□□□■■■□□□\n");
-    ////printf("□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□\n");
-    //printf("★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆\n");
 
     printf("\n\n");
     printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -82,11 +67,18 @@ int PlayGame::PlayTamagotchi()
     system("cls");
     display.ShowTamaEgg();
 
-    while (state.Level != 5) {
-        system("cls");
-        showStatus(state);
-        ShowMenu(state);
+    if (state.Level == MAXLEVEL) {
+        display.EvolutionShow(); // 다마고치가 3레벨이 되어 게임 종료
     }
+
+    while (state.Level != MAXLEVEL) {
+            system("cls");
+            showStatus(state);
+            ShowMenu(state);
+            
+    }
+
+    return 0;
 }
 
 void PlayGame::ShowMenu(TamaState& state)
@@ -105,7 +97,7 @@ void PlayGame::ShowMenu(TamaState& state)
         int ChooseMenu;
         printf("\t\t\t\t\t\t\t   무엇을 하시겠어요? ");
         std::cin >> ChooseMenu;
-
+        int i;
         //showStatus(state);
 
         switch (ChooseMenu)
@@ -113,29 +105,31 @@ void PlayGame::ShowMenu(TamaState& state)
         case 1:
             system("cls");
             display.ShowEatingTama();
-            tama.Eating(TamaName);
+            tama.Eating(TamaName,state.Energy);
        
             break;
         case 2:
+            printf("2번 클릭\n");
             system("cls");
             display.ShowUsual();
-            minigame.ShowMiniGame(TamaName);
+            minigame.ShowMiniGame(state);
+            i = 0;
             break;
         case 3:
             system("cls");
 
             display.ShowUsual();
-            tama.Restaurant(TamaName);
+            tama.Restaurant(TamaName,state);
             break;
         case 4:
             system("cls");
             display.BathTama();
-            tama.TakeBath(TamaName);
+            tama.TakeBath(TamaName,state.Clean);
             break;
         case 5:
             system("cls");
             display.SleepingTama();
-            tama.Sleeping(TamaName);
+            tama.Sleeping(TamaName,state);
             break; 
         default:
             printf("메뉴 선택 중 에러가 발생했습니다. \n");
@@ -148,12 +142,25 @@ void PlayGame::ShowMenu(TamaState& state)
 void PlayGame::showStatus(TamaState& state)
 {
     printf("\n");
-    display.ShowUsual();
+    if (state.Clean >= 50) {
+        display.ShowUsual();
+    }
+    else {
+        display.DirtyTama();
+    }
     printf("\n\t\t\t=================================================================================================\n");
     printf("\t\t\t\t\t\t\t     ★다마고치 상태★");
     printf("\n\t\t\t-------------------------------------------------------------------------------------------------\n");
-    printf("\t\t\t\t\t\t다마고치 이름: %6s \t\tLV.%d\n", TamaName.c_str(),state.Level);
-    printf("\t\t\t\t     에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : %3d\t돈 : %4d\n", state.Energy, state.Happiness,state.Exp, state.Clean, state.Money);
+    printf("\t\t\t\t\t다마고치 이름: %6s \t\tLV.%d\t\tDAY %3d\n", TamaName.c_str(),state.Level,state.Day);
+    if (state.Clean >= 80) {
+        printf("\t\t\t\t  에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : 깨끗함    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
+    }
+    else if (state.Clean >= 50) {
+        printf("\t\t\t\t  에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : 꼬질함    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
+    }
+    else {
+        printf("\t\t\t\t  에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : 더러움    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
+    }
     //printf ( "\t\t\t\t\t\t\t에너지     :     %d\n" , Energy );
     //printf ( "\t\t\t\t\t\t\t행복도     :     %d\n" ,Happiness );
     //printf ( "\t\t\t\t\t\t\t경험치     :     %.1f\n",Exp );
@@ -161,10 +168,4 @@ void PlayGame::showStatus(TamaState& state)
     //printf("\t\t\t\t\t\t\t========================\n");
     printf("\t\t\t=================================================================================================\n\n");
 }
-
-void PlayGame::Evolution()
-{
-    display.EvolutionShow();
-}
-
 

@@ -31,30 +31,7 @@ void Display::TamaDisplay()
 	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
-
-void Display::ShowTamaEgg()
-{
-	system("cls");
-	TamaEgg();
-	Sleep(450);
-	system("cls");
-	TamaEgg1();
-	Sleep(450);
-	system("cls");
-	TamaEgg2();
-	Sleep(450);
-	system("cls");
-	TamaEgg1();
-	Sleep(450);
-	system("cls");
-	TamaEgg();
-	printf("\n\t\t\t\t\t\t   ★다마고치가 알에서 깨어나요!!★");
-	Sleep(900);
-	system("cls");
-	ShowUsual();
-}
-
-void Display::TamaEgg()
+void TamaEgg()
 {
 	printf("\n\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -81,7 +58,7 @@ void Display::TamaEgg()
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
 
-void Display::TamaEgg1()
+void TamaEgg1()
 {
 	printf("\n\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -108,7 +85,7 @@ void Display::TamaEgg1()
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
 
-void Display::TamaEgg2()
+void TamaEgg2()
 {
 	printf("\n\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -134,6 +111,29 @@ void Display::TamaEgg2()
 	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
+void Display::ShowTamaEgg()
+{
+	system("cls");
+	TamaEgg();
+	Sleep(200);
+	system("cls");
+	TamaEgg1();
+	Sleep(200);
+	system("cls");
+	TamaEgg2();
+	Sleep(200);
+	system("cls");
+	TamaEgg1();
+	Sleep(200);
+	system("cls");
+	TamaEgg();
+	printf("\n\t\t\t\t\t\t   ★다마고치가 알에서 깨어나요!!★");
+	Sleep(500);
+	system("cls");
+	ShowUsual();
+}
+
+
 
 void Display::ShowUsual()
 {
@@ -420,7 +420,7 @@ void Display::DirtyTama()
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
 
-void Display::BigStar()
+void BigStar()
 {
 	printf("\n\n\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -447,7 +447,7 @@ void Display::BigStar()
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
 
-void Display::LitterStar()
+void LitterStar()
 {
 	printf("\n\n\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
@@ -474,19 +474,137 @@ void Display::LitterStar()
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
 
+void Evo1() {
+	printf("\n\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■□□□□□□□□□□■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■■■■□□□□□□□□■■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■■■■■■□□□□□■■■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■□□□□■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■■□□□■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■■■■■■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□■■■■■■■■■■■■□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□■□□□□□□□□□□□■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■□□□□□□□□□□□□□■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■□□■■□□□□□■■□□□□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□■■□□□□□■■□□□□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□□□■■■■■□□□□□□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□□□□□□□□□□□□□□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□□□□□□□□□□□□□□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■□□□□□□□□□□□□□□□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■□□□□□□□□□□□□□□■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■■■■■■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+}
+
+void Evo2() {
+	printf("\n\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■□□□□□□□□□□■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■■■■□□□□□□□□■■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■■■■■■□□□□□■■■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■□□□□■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■■□□□■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■■■■■■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□■■■■■■■■■■■■□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□■□□□□□□□□□□□■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■□□□□□□□□□□□□□■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■□□■■□□□□□■■□□□□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□■■□□□□□■■□□□□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□□□■■■■■□□□□□□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□□□■■■■■□□□□□□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■□□□□□□□□□□□□□□□□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■□□□□□□□□□□□□□□□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■□□□□□□□□□□□□□□■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□■■■■■■■■■■■■■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+}
+
 void Display::EvolutionShow()
 {
 	system("cls");
 	LitterStar();
-	Sleep(300);
+	Sleep(200);
 	system("cls");
 	BigStar();
-	Sleep(300);
+	Sleep(200);
 	system("cls");
 	LitterStar();
-	Sleep(300);
+	Sleep(200);
 	system("cls");
-	BigStar();
+	Evo1();
+	Sleep(400);
+	system("cls");
+	Evo2();
+	Sleep(400);
+	system("cls");
+	Evo1();
 	printf("\t\t\t\t\t\t\t다마고치가 모두 자랐어요!! 게임 끝!! \n\n\n\n");
+	Sleep(1000);
+	exit(0);
+}
+
+void Display::LevelUp()
+{
+	printf("\n\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□□□□□■■□□□□□■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□□□□□■■□□□□□■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□□□□□□■■□□□■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□□□□□□■■□□□■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□□□□□□□■■□■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□□□□□□□■■□■■□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■■■■■■□□□□□■■■□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■■■■■■□□□□□■■■□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□■■□□□□■■■■■■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□■■□□□□■■■■■■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□■■□□□□■■□□□■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□■■□□□□■■□□□■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■□□□■■□□□□■■■■■■■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■■■■■■□□□□■■□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□■■■■■□□□□□■■□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+}
+
+void Display::GameOver()
+{
+	system("cls");
+	printf("\n\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□■■■■□□□■■■□□■□□□■□■■■■□■\n");
+	printf("\t\t\t\t\t   ■□□■□□□□□□■□■□□■■□■■□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□■□■■■□□■■■□□■□■□■□■■■■□■\n");
+	printf("\t\t\t\t\t   ■□□■□□■□□■□□□■□■□□□■□■□□□□■\n");
+	printf("\t\t\t\t\t   ■□□■■■■□□■□□□■□■□□□■□■■■■□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□■■■■□■□□□■□■■■■□■■■■■□□■\n");
+	printf("\t\t\t\t\t   ■□□■□□■□■□□□■□■□□□□■□□□■□□■\n");
+	printf("\t\t\t\t\t   ■□□■□□■□□■□■□□■■■■□■■■■■□□■\n");
+	printf("\t\t\t\t\t   ■□□■□□■□□■□■□□■□□□□■□□■□□□■\n");
+	printf("\t\t\t\t\t   ■□□■■■■□□□■□□□■■■■□■□□□■□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
+	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
+	printf("\n\n \t\t\t\t\t\t 다마고치가 과로사했습니다....\n\n\n\n\n");
+	Sleep(500);
+	exit(0);
 }
 

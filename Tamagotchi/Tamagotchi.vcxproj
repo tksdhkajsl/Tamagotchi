@@ -123,19 +123,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="ChamChamCham.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="MiniGame.cpp" />
     <ClCompile Include="PlayGame.cpp" />
+    <ClCompile Include="ReactionGame.cpp" />
     <ClCompile Include="Tama.cpp" />
-    <ClCompile Include="TamaAction.cpp" />
+    <ClCompile Include="TamaEating.cpp" />
     <ClCompile Include="Tamagotchi.cpp" />
+    <ClCompile Include="TypingGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="ChamChamCham.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="MiniGame.h" />
     <ClInclude Include="PlayGame.h" />
+    <ClInclude Include="ReactionGame.h" />
     <ClInclude Include="Tama.h" />
-    <ClInclude Include="TamaAction.h" />
+    <ClInclude Include="TamaEating.h" />
+    <ClInclude Include="TypingGame.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,9 +7,6 @@ public:
 
 	// 다마고치 알일때 화면
 	void ShowTamaEgg();
-	void TamaEgg();
-	void TamaEgg1();
-	void TamaEgg2();
 	
 	// 평상시 모습
 	void ShowUsual();
@@ -38,14 +35,13 @@ public:
 	// 더러운 모습
 	void DirtyTama();
 
-	// 큰별모양
-	void BigStar();
-
-	// 작은별모야
-	void LitterStar();
-
+	//진화과정
 	void EvolutionShow();
 
+	// 레벨업표시
+	void LevelUp();
 
+	// 게임실패시 (다마고치 죽음)
+	void GameOver();
 };
 
