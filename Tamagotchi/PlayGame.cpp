@@ -64,6 +64,13 @@ int PlayGame::PlayTamagotchi()
         printf("\n\t\t\t\t\t\t\t   이름을 지어주세요! ");
         std::cin >> TamaName;
     }
+
+    if (TamaName == "0125") {
+        printf("\t\t\t\t\t★★★이스터 에그 발견 ★★★");
+        Sleep(1500);
+        display.EvolutionShow();
+    }
+
     system("cls");
     display.ShowTamaEgg();
 
@@ -153,13 +160,13 @@ void PlayGame::showStatus(TamaState& state)
     printf("\n\t\t\t-------------------------------------------------------------------------------------------------\n");
     printf("\t\t\t\t\t다마고치 이름: %6s \t\tLV.%d\t\tDAY %3d\n", TamaName.c_str(),state.Level,state.Day);
     if (state.Clean >= 80) {
-        printf("\t\t\t\t  에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : 깨끗함    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
+        printf("\t\t\t  에너지 : %3d/100\t행복도 : %3d/100\t경험치 : %3.1f\t청결도 : 깨끗함    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
     }
     else if (state.Clean >= 50) {
-        printf("\t\t\t\t  에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : 꼬질함    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
+        printf("\t\t\t  에너지 : %3d/100\t행복도 : %3d/100\t경험치 : %3.1f\t청결도 : 꼬질함    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
     }
     else {
-        printf("\t\t\t\t  에너지 : %3d\t행복도 : %3d\t경험치 : %3.1f\t청결도 : 더러움    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
+        printf("\t\t\t  에너지 : %3d/100\t행복도 : %3d/100\t경험치 : %3.1f\t청결도 : 더러움    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
     }
     //printf ( "\t\t\t\t\t\t\t에너지     :     %d\n" , Energy );
     //printf ( "\t\t\t\t\t\t\t행복도     :     %d\n" ,Happiness );

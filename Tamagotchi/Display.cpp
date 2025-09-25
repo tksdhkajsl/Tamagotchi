@@ -115,20 +115,20 @@ void Display::ShowTamaEgg()
 {
 	system("cls");
 	TamaEgg();
-	Sleep(200);
+	Sleep(400);
 	system("cls");
 	TamaEgg1();
-	Sleep(200);
+	Sleep(400);
 	system("cls");
 	TamaEgg2();
-	Sleep(200);
+	Sleep(400);
 	system("cls");
 	TamaEgg1();
-	Sleep(200);
+	Sleep(400);
 	system("cls");
 	TamaEgg();
 	printf("\n\t\t\t\t\t\t   ★다마고치가 알에서 깨어나요!!★");
-	Sleep(500);
+	Sleep(1000);
 	system("cls");
 	ShowUsual();
 }
@@ -166,13 +166,13 @@ void Display::ShowEatingTama()
 {
 	system("cls");
 	EatingTama1();
-	Sleep(300);
+	Sleep(400);
 	system("cls");
 	EatingTama2();
-	Sleep(300);
+	Sleep(400);
 	system("cls");
 	EatingTama1();
-	Sleep(300);
+	Sleep(400);
 	system("cls");
 	EatingTama2();
 }
@@ -357,10 +357,10 @@ void Display::BathTama()
 	printf("\t\t\t\t\t   ■□□□□■□□□□□□□□□□□□□□□□■□□□■\n");
 	printf("\t\t\t\t\t   ■□■■■■■■■■■■■■■■■■■■■■■■■□■\n");
 	printf("\t\t\t\t\t   ■□■□□□□□□□□□□□□□□□□□□□□□■□■\n");
+	printf("\t\t\t\t\t   ■□■□□□□□□□□□□□□□□□□□□□□□■□■\n");
 	printf("\t\t\t\t\t   ■□□■□□□□□□□□□□□□□□□□□□□■□□■\n");
 	printf("\t\t\t\t\t   ■□□□■□□□□□□□□□□□□□□□□□■□□□■\n");
-	printf("\t\t\t\t\t   ■□□□□■□□□□□□□□□□□□□□□■□□□□■\n");
-	printf("\t\t\t\t\t   ■□□□□□■■■■■■■■■■■■■■■□□□□□■\n");
+	printf("\t\t\t\t\t   ■□□□■■■■■■■■■■■■■■■■■■■□□□■\n");
 	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 }
@@ -530,23 +530,23 @@ void Display::EvolutionShow()
 {
 	system("cls");
 	LitterStar();
-	Sleep(200);
+	Sleep(300);
 	system("cls");
 	BigStar();
-	Sleep(200);
+	Sleep(300);
 	system("cls");
 	LitterStar();
-	Sleep(200);
+	Sleep(300);
 	system("cls");
 	Evo1();
-	Sleep(400);
+	Sleep(500);
 	system("cls");
 	Evo2();
-	Sleep(400);
+	Sleep(500);
 	system("cls");
 	Evo1();
 	printf("\t\t\t\t\t\t\t다마고치가 모두 자랐어요!! 게임 끝!! \n\n\n\n");
-	Sleep(1000);
+	Sleep(2000);
 	exit(0);
 }
 
@@ -604,7 +604,7 @@ void Display::GameOver()
 	printf("\t\t\t\t\t   ■□□□□□□□□□□□□□□□□□□□□□□□□□■\n");
 	printf("\t\t\t\t\t   ■■■■■■■■■■■■■■■■■■■■■■■■■■■\n");
 	printf("\n\n \t\t\t\t\t\t 다마고치가 과로사했습니다....\n\n\n\n\n");
-	Sleep(500);
+	Sleep(2000);
 	exit(0);
 }
 

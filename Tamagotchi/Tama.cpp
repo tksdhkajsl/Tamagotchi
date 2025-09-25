@@ -174,9 +174,11 @@ void Tama::Sleeping(std::string TamaName, TamaState& state)
 	
 	if (state.Clean < 80 && state.Clean >= 50) {
 		state.Happiness -= 20;
+		state.Happiness = LimitState(state.Happiness);
 	}
 	else if (state.Clean < 50) {
 		state.Happiness -= 40;
+		state.Happiness = LimitState(state.Happiness);
 	}
 
 	Sleep(1200);

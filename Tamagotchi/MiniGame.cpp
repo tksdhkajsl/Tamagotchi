@@ -134,7 +134,7 @@ void WhenLevelUp(TamaState& state) {
         system("cls");
         d.LevelUp();
         printf("\t\t\t\t\t다마고치가 2레벨이 되었어요!!!\n");
-        Sleep(1000);
+        Sleep(1500);
         state.Level++;
         state.Exp = 0;
         state.Energy += 20;
@@ -147,7 +147,7 @@ void WhenLevelUp(TamaState& state) {
         system("cls");
         d.LevelUp();
         printf("\t\t\t\t\t다마고치가 3레벨이 되었어요!!!\n");
-        Sleep(1000);
+        Sleep(1500);
         state.Level++;
         state.Exp = 0;
         state.Energy += 20;
@@ -162,7 +162,7 @@ void WhenLevelUp(TamaState& state) {
         system("cls");
         d.LevelUp();
         printf("\t\t\t\t\t다마고치가 4레벨이 되었어요!!!\n");
-        Sleep(1000);
+        Sleep(1500);
         state.Level++;
         state.Exp = 0;
         state.Energy += 20;
