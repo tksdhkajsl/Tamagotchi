@@ -65,8 +65,8 @@ int PlayGame::PlayTamagotchi()
         std::cin >> TamaName;
     }
 
-    if (TamaName == "0125") {
-        printf("\t\t\t\t\t★★★이스터 에그 발견 ★★★");
+    if (TamaName == "0125" || TamaName == "980125" || TamaName == "yujin") {
+        printf("\t\t\t\t\t★★★개발자를 아는 당신-★\nt\t\t\t\t축복을 내려주게써요★★★");
         Sleep(1500);
         display.EvolutionShow();
     }
