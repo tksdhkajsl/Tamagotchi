@@ -102,7 +102,7 @@ void PlayGame::ShowMenu(TamaState& state)
         printf("\t\t\t\t\t\t\t+----------------------+\n");
 
         int ChooseMenu;
-        printf("\t\t\t\t\t\t\t   무엇을 하시겠어요? ");
+        printf("\t\t\t\t\t\t\t   무엇을 하시겠어요? (예시 : 1) ");
         std::cin >> ChooseMenu;
         int i;
         //showStatus(state);

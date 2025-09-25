@@ -61,12 +61,12 @@ void MiniGame::ShowMiniGame(TamaState& state)
         printf("\t\t\t\t\t\t|  3. 보물 찾기 (-30 에너지)       |\n");
         printf("\t\t\t\t\t\t|  4. 게임 종료                    |\n");
         printf("\t\t\t\t\t\t+----------------------------------+\n");
-        printf("\t\t\t\t\t무슨 게임을 하시겠어요? ");
+        printf("\t\t\t\t\t무슨 게임을 하시겠어요? (예시 : 1) ");
         std::cin >> WhichGame;
 
         while (!(WhichGame == '1' || WhichGame == '2' || WhichGame == '3' || WhichGame == '4')) {
             printf("\t\t\t\t\t그런 게임은 없어요! \n");
-            printf("\t\t\t\t\t무슨 게임을 하시겠어요? ");
+            printf("\t\t\t\t\t무슨 게임을 하시겠어요? (예시 : 1) ");
             std::cin >> WhichGame;
         }
 
