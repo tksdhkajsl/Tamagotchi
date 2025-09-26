@@ -237,7 +237,7 @@ int MiniGame::playChamChamCham(TamaState& state)
 
         printf("\t\t\t\t\t왼쪽이면 L 오른쪽이면 R을 입력해줘!\n");
         printf("\t\t\t\t\t참참참~!\n\t\t\t\t\t>> ");
-        std::cin >> PlayersHand;
+        std::cin >> PlayersHand; // #include <time.h> 추가 필요 랜덤 값이 고정임. 메인에 srand(time(0)) 해도 적용 안됨을 확인함.
 
         if (!(PlayersHand == 'L' || PlayersHand == 'l' || PlayersHand == 'R' || PlayersHand == 'r'))
         {
