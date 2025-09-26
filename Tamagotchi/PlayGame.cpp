@@ -51,7 +51,7 @@ int PlayGame::PlayTamagotchi()
 
     while (!(StartORNo == "No" || StartORNo == "N" || StartORNo == "n" || StartORNo == "NO" || StartORNo == "no" || StartORNo == "Yes" || StartORNo == "YES" || StartORNo == "Y" || StartORNo == "y" || StartORNo == "yes")) {
   
-        // 제대로 입력할때까지 - 조건문 수정하기
+        // 제대로 입력할때까지
         printf("\n\t\t\t\t\t\t\t\tYES OR NO ? ");
         std::cin >> StartORNo;
         
@@ -75,14 +75,13 @@ int PlayGame::PlayTamagotchi()
     display.ShowTamaEgg();
 
     if (state.Level == MAXLEVEL) {
-        display.EvolutionShow(); // 다마고치가 3레벨이 되어 게임 종료
+        display.EvolutionShow(); // 다마고치가 5레벨이 되어 게임 종료
     }
 
     while (state.Level != MAXLEVEL) {
-            system("cls");
+            system("cls");          // 최대레벨이 아니면 계속해서 메뉴화면과 상태창이 뜨는 메인화면을 보여주도록
             showStatus(state);
             ShowMenu(state);
-            
     }
 
     return 0;
@@ -101,11 +100,21 @@ void PlayGame::ShowMenu(TamaState& state)
         //printf("\t\t\t\t\t\t\t|  6.게임종료          |\n");
         printf("\t\t\t\t\t\t\t+----------------------+\n");
 
+        std::string InputMenu;
         int ChooseMenu;
-        printf("\t\t\t\t\t\t\t   무엇을 하시겠어요? (예시 : 1) ");
-        std::cin >> ChooseMenu;
-        int i;
+        while (true) {
+
+        printf("\t\t\t\t\t\t\t무엇을 하시겠어요? (예시 : 1) ");
+        std::cin >> InputMenu;
         //showStatus(state);
+
+        if (InputMenu.length() == 1) {  // 한 글자만 입력되도록
+            ChooseMenu = InputMenu[0]-'0'; // -'0' 하면 정수로 변환된다
+            if (ChooseMenu >= 1 && ChooseMenu <= 5) {
+                break;
+            }
+        }
+        }
 
         switch (ChooseMenu)
         {
@@ -116,11 +125,9 @@ void PlayGame::ShowMenu(TamaState& state)
        
             break;
         case 2:
-            printf("2번 클릭\n");
             system("cls");
             display.ShowUsual();
             minigame.ShowMiniGame(state);
-            i = 0;
             break;
         case 3:
             system("cls");
@@ -134,14 +141,14 @@ void PlayGame::ShowMenu(TamaState& state)
             tama.TakeBath(TamaName,state.Clean);
             break;
         case 5:
-            printf("\t\t\t\t 에너지가 20 이하일 때 자면 다마고치가 피곤해요...\n");
+            printf("\n\t\t\t\t\t\t에너지가 20 이하일 때 자면 다마고치가 피곤해요...\n");
             Sleep(1200);
             system("cls");
             display.SleepingTama();
             tama.Sleeping(TamaName,state);
             break; 
         default:
-            printf("메뉴 선택 중 에러가 발생했습니다. \n");
+            printf("\t\t\t\t메뉴 선택 중 에러가 발생했습니다. \n");
             break;
         }
  

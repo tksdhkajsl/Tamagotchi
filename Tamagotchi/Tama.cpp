@@ -30,14 +30,15 @@ int Tama::LimitState(int StateIndex) {	// 에너지, 행복도, 청결도는 0~1
 	return StateIndex;
 }
 
+// 더하는 수치 상수로 변경해주고 싶은데 나중에 하기..
 
-void Tama::Eating(std::string TamaName, int& Energy) // 에너지값 변화가 없음 , 아래 printf 안 출력되고 바로 메뉴창으로 이동
+void Tama::Eating(std::string TamaName, int& Energy) 
 {
 	printf("\n\t\t\t\t\t\t%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
 	Energy += 5;
 	Energy = LimitState(Energy);
 
-	Sleep(1200);
+	Sleep(1200); // 화면이 다시 메인 표시 전까지 좀 기다려주기..
 }
 
 void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금액 지불 부분
@@ -55,100 +56,115 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 	printf("\t\t\t\t +---------------------------------------------------------------+\n");
 	
 	int WhichFood = 0;
-	while (WhichFood != 5) {
+	std::string InputRestMenu; 
 
+	// 한 글자 이상이나 문자 입력하면 무한 루프 걸려서 조건문 수정
+	//while (WhichFood != 5) {
+	
 
-	printf("\t\t\t\t\t어떤 음식을 구매하시겠어요? (소지금 : %d) ",state.Money);
-	std::cin >> WhichFood;
-
-	while (!(WhichFood >= 1) &&!( WhichFood <=5)) {
-		printf("\t\t\t\t\t그런 음식은 없어요! \n");
+	while(true){
 		printf("\t\t\t\t\t어떤 음식을 구매하시겠어요? (소지금 : %d) ", state.Money);
-		std::cin >> WhichFood;
-	}
+		std::cin >> InputRestMenu;
 
-	
-	switch (WhichFood) {
-	case 1: 
-	{
-		if (state.Money >= 20) {
-		printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str()); 
-		state.Energy += 20;
-		state.Happiness += 20;
-		state.Money -= 20;
-		state.Energy = LimitState(state.Energy);
-		state.Happiness = LimitState(state.Happiness);
-		printf("\t\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
-		}
-		else{
-			printf("\t\t\t\t\t\t금액이 부족합니다.\n");
-		}
-	}
-		break;
-	case 2:
-	{
-		if (state.Money >= 50) {
-		printf("\t\t\t\t%s이/가 식당에서 떡볶이를 먹습니다. + 에너지 50 + 행복도 30  \n", TamaName.c_str());
-		state.Energy += 50;
-		state.Happiness += 30;
-		state.Money -= 50;
-		state.Energy = LimitState(state.Energy);
-		state.Happiness = LimitState(state.Happiness);
-		printf("\t\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
-		}
-		else {
-			printf("\t\t\t\t\t\t금액이 부족합니다.\n");
-		}
-	}
-		break;
-	case 3:
-	{
-		if (state.Money >= 5) {
-		printf("\t\t\t\t\t%s이/가 식당에서 딸기맛 젤리를 먹습니다. + 행복도 15  \n", TamaName.c_str());
-		state.Happiness += 15;
-		state.Money -= 5;
-		state.Happiness = LimitState(state.Happiness);
-		printf("\t\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
-		}
-		else {
-			printf("\t\t\t\t\t\t금액이 부족합니다.\n");
-		}
-	}
-		break;
-	case 4:
-	{
-		if (state.Money >= 10) {
-		printf("\t\t\t\t%s이/가 식당에서 초코 쿠키를 먹습니다. + 에너지 10 + 행복도 20  \n", TamaName.c_str());
-		state.Energy += 10;
-		state.Happiness += 20;
-		state.Money -= 10;
+	if (InputRestMenu.length() == 1) {  // 한 글자만 입력되도록
+		WhichFood = InputRestMenu[0] - '0'; // -'0' 하면 정수로 변환된다
+		if (WhichFood >= 1 && WhichFood <= 5) {
+			switch (WhichFood) {
+			case 1:
+			{
+				if (state.Money >= 20) {
+					printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str());
+					state.Energy += 20;
+					state.Happiness += 20;
+					state.Money -= 20;
+					state.Energy = LimitState(state.Energy);
+					state.Happiness = LimitState(state.Happiness);
+					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+				}
+				else {
+					printf("\t\t\t\t\t금액이 부족합니다.\n");
+				}
+			}
+			break;
+			case 2:
+			{
+				if (state.Money >= 50) {
+					printf("\t\t\t\t\t%s이/가 식당에서 떡볶이를 먹습니다. + 에너지 50 + 행복도 30  \n", TamaName.c_str());
+					state.Energy += 50;
+					state.Happiness += 30;
+					state.Money -= 50;
+					state.Energy = LimitState(state.Energy);
+					state.Happiness = LimitState(state.Happiness);
+					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+				}
+				else {
+					printf("\t\t\t\t\t금액이 부족합니다.\n");
+				}
+			}
+			break;
+			case 3:
+			{
+				if (state.Money >= 5) {
+					printf("\t\t\t\t\t%s이/가 식당에서 딸기맛 젤리를 먹습니다. + 행복도 15  \n", TamaName.c_str());
+					state.Happiness += 15;
+					state.Money -= 5;
+					state.Happiness = LimitState(state.Happiness);
+					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+				}
+				else {
+					printf("\t\t\t\t\t금액이 부족합니다.\n");
+				}
+			}
+			break;
+			case 4:
+			{
+				if (state.Money >= 10) {
+					printf("\t\t\t\t\t%s이/가 식당에서 초코 쿠키를 먹습니다. + 에너지 10 + 행복도 20  \n", TamaName.c_str());
+					state.Energy += 10;
+					state.Happiness += 20;
+					state.Money -= 10;
 
-		state.Energy = LimitState(state.Energy);
-		state.Happiness = LimitState(state.Happiness);
-		printf("\t\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+					state.Energy = LimitState(state.Energy);
+					state.Happiness = LimitState(state.Happiness);
+					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+				}
+				else {
+					printf("\t\t\t\t\t금액이 부족합니다.\n");
+				}
+			}
+			break;
+			case 5:
+			{
+				printf("\t\t\t\t\t%s이/가 식당을 나갑니다..   \n", TamaName.c_str()); 
+				Sleep(1000);
+				return;
+			}
+			break;
+			default:
+				printf("\t\t\t\t\t식당에서 무언가 잘못되었어요.. \n");
+				break;
+
+			}
+			Sleep(1000);
 		}
 		else {
-			printf("\t\t\t\t\t\t금액이 부족합니다.\n");
+			printf("\t\t\t\t\t그런 음식은 없어요! \n");
 		}
 	}
-		break;
-	case 5:
-	{
-		printf("\t\t\t\t\t%s이/가 식당을 나갑니다..   \n", TamaName.c_str());
+	else {
+		printf("\t\t\t\t\t그런 음식은 없어요! \n");
 	}
-		break;
-	default:
-		printf("\t\t\t\t\t식당에서 무언가 잘못되었어요.. \n");
-		break;
-	
-	}
-	Sleep(1200);
+	//while (!(WhichFood >= 1) &&!( WhichFood <=5)) {
+	//	printf("\t\t\t\t\t그런 음식은 없어요! \n");
+	//	printf("\t\t\t\t\t어떤 음식을 구매하시겠어요? (소지금 : %d) ", state.Money);
+	//	std::cin >> WhichFood;
+	//}
 	}
 }
 
 void Tama::TakeBath(std::string TamaName, int& Clean)
 {
-	printf("\n\t\t\t\t\t\t%s이/가 목욕합니다. + 청결도 30 \n", TamaName.c_str());
+	printf("\n\t\t\t\t\t%s이/가 목욕합니다. + 청결도 30 \n", TamaName.c_str());
 	Clean += 30;
 	state.Clean = LimitState(state.Clean);
 	Sleep(1200);
@@ -164,8 +180,8 @@ void Tama::Sleeping(std::string TamaName, TamaState& state)
 		display.GameOver(); // 에너지가 20이하일때 재우기 누적 3번이면 과로사로 게임 종료
 	}
 	
-	printf("\n\t\t\t\t\t\t%s이/가 잠을 잡니다. + 에너지 20 \n", TamaName.c_str());
-	printf("\t\t\t\t\t\t다음날이 되었습니다.\n");
+	printf("\n\t\t\t\t\t%s이/가 잠을 잡니다. + 에너지 20 \n", TamaName.c_str());
+	printf("\t\t\t\t\t다음날이 되었습니다.\n");
 	
 	state.Energy += 20;
 	state.Energy = LimitState(state.Energy);

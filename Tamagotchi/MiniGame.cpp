@@ -44,86 +44,114 @@ struct GAMEREWARDS {
 };
 GAMEREWARDS reward;
 
-    char WhichGame = ' '; // int 로 했더니 입력받을 때 문자가 입력되면 무한루프에 빠져서 char로 고침
-
+    //char WhichGame = ' '; // int 로 했더니 입력받을 때 문자가 입력되면 무한루프에 빠져서 char로 고침
+                            // 이것도 여러글자 입력하면 그 글자수만큼 반복해서 변경..
+                            
+void ShowGameMenu(TamaState& state) {
+    printf("\n\t\t\t\t\t\t+----------------------------------+\n");
+    printf("\t\t\t\t\t\t|             게임 메뉴            |\n");
+    printf("\t\t\t\t\t\t+----------------------------------+\n");
+    printf("\t\t\t\t\t\t|      남은 게임 횟수 : %d번        |\n", state.GameLimit);
+    printf("\t\t\t\t\t\t|  1. 참참참 (-10 에너지)          |\n");
+    printf("\t\t\t\t\t\t|  2. 키보드 따라치기 (-15 에너지) |\n");
+    printf("\t\t\t\t\t\t|  3. 보물 찾기 (-30 에너지)       |\n");
+    printf("\t\t\t\t\t\t|  4. 게임 종료                    |\n");
+    printf("\t\t\t\t\t\t+----------------------------------+\n");
+}
+int WhichGame = 0;
 void MiniGame::ShowMiniGame(TamaState& state)
 {    
-    WhichGame = ' ';
+    WhichGame = 0;
+    std::string InputGameMenu;
+    int ShowMenuCount = 0; // 게임 한번 한 이후에 다시 게임 메뉴 출력할때 한번만 출력하고싶어서
+
     system("cls");
     d.ShowUsual();
-    while (WhichGame != '4') {
-        printf("\n\t\t\t\t\t\t+----------------------------------+\n");
-        printf("\t\t\t\t\t\t|             게임 메뉴            |\n");
-        printf("\t\t\t\t\t\t+----------------------------------+\n");
-        printf("\t\t\t\t\t\t|      남은 게임 횟수 : %d번        |\n", state.GameLimit);
-        printf("\t\t\t\t\t\t|  1. 참참참 (-10 에너지)          |\n");
-        printf("\t\t\t\t\t\t|  2. 키보드 따라치기 (-15 에너지) |\n");
-        printf("\t\t\t\t\t\t|  3. 보물 찾기 (-30 에너지)       |\n");
-        printf("\t\t\t\t\t\t|  4. 게임 종료                    |\n");
-        printf("\t\t\t\t\t\t+----------------------------------+\n");
-        printf("\t\t\t\t\t무슨 게임을 하시겠어요? (예시 : 1) ");
-        std::cin >> WhichGame;
+    ShowGameMenu(state);
+  /*  printf("\t\t\t\t\t무슨 게임을 하시겠어요? (예시 : 1) ");
+    std::cin >> InputGameMenu;*/
 
-        while (!(WhichGame == '1' || WhichGame == '2' || WhichGame == '3' || WhichGame == '4')) {
+    while (true) {
+        if (ShowMenuCount == 1) {
+            ShowGameMenu(state);
+            ShowMenuCount = 0;
+        }
+        printf("\t\t\t\t\t무슨 게임을 하시겠어요? 현재 에너지 : %d (예시 : 1) ", state.Energy);
+        std::cin >> InputGameMenu;
+
+        if (InputGameMenu.length() == 1) {  // 한 글자만 입력되도록
+            WhichGame = InputGameMenu[0] - '0'; // -'0' 하면 정수로 변환된다
+            if (WhichGame >= 1 && WhichGame <= 4) {
+                switch (WhichGame) {
+                case 1:
+                {
+                    if (state.GameLimit > 0) {
+                        if (state.Energy >= reward.CharmEnergyLoss) {
+                            state.GameLimit--;
+                            playChamChamCham(state);
+                            ShowMenuCount++;
+                        }
+                        else {
+                            printf("\t\t\t\t\t에너지가 부족해서 게임을 할 수 없어..!\n");
+                        }
+                    }
+                    else
+                    {
+                        printf("\t\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
+                    }
+                }
+                break;
+                case 2:
+                {
+                    if (state.GameLimit > 0) {
+                        if (state.Energy >= reward.TypingEnergyLoss) {
+                            state.GameLimit--;
+                            playTypingChallenge(state);
+                            ShowMenuCount++;
+                        }
+                        else {
+                            printf("\t\t\t\t\t에너지가 부족해서 게임을 할 수 없어..!\n");
+                        }
+                    }
+                    else
+                    {
+                        printf("\t\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
+                    }
+                }
+                break;
+                case 3:
+                {
+                    if (state.GameLimit > 0) {
+                        if (state.Energy >= reward.TreasureEnergyLoss) {
+                            state.GameLimit--;
+                            playTreasureHunt(state);
+                            ShowMenuCount++;
+                        }
+                        else {
+                            printf("\t\t\t\t\t에너지가 부족해서 게임을 할 수 없어..!\n");
+                        }
+                    }
+                    else
+                    {
+                        printf("\t\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
+                    }
+                }
+                break;
+                case 4:
+                    printf("\t\t\t\t\t놀아주기를 종료합니다..   \n");
+                    Sleep(1000);
+                    return ;
+                    break;
+                default:
+                    break;
+                }
+            }
+            else {
+                printf("\t\t\t\t\t그런 게임은 없어요! \n");
+            }
+        }
+        else {
             printf("\t\t\t\t\t그런 게임은 없어요! \n");
-            printf("\t\t\t\t\t무슨 게임을 하시겠어요? (예시 : 1) ");
-            std::cin >> WhichGame;
-        }
-
-        switch (WhichGame) {
-        case '1':
-        {
-            if (state.GameLimit > 0) {
-                if (state.Energy >= reward.CharmEnergyLoss) {
-                    state.GameLimit--;
-                    playChamChamCham(state);
-                }
-                else {
-                    printf("\t\t\t\t에너지가 부족해서 게임을 할 수 없어..!\n");
-                }
-            }
-            else
-            {
-                printf("\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
-            }
-        }
-        break;
-        case '2':
-        {
-            if (state.GameLimit > 0) {
-                if (state.Energy >= reward.TypingEnergyLoss) {
-                    state.GameLimit--;
-                    playTypingChallenge(state);
-                }
-                else {
-                    printf("\t\t\t\t에너지가 부족해서 게임을 할 수 없어..!\n");
-                }
-            }
-            else
-            {
-                printf("\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
-            }
-        }
-        break;
-        case '3':
-        {
-            if (state.GameLimit > 0) {
-                if (state.Energy >= reward.TreasureEnergyLoss) {
-                    state.GameLimit--;
-                    playTreasureHunt(state);
-                }
-                else {
-                    printf("\t\t\t\t에너지가 부족해서 게임을 할 수 없어..!\n");
-                }
-            }
-            else
-            {
-                printf("\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
-            }
-        }
-        break;
-        default:
-            break;
         }
     }
     
@@ -133,7 +161,7 @@ void WhenLevelUp(TamaState& state) {
     if (state.Exp >= 50.0f && state.Level == 1) {
         system("cls");
         d.LevelUp();
-        printf("\t\t\t\t\t다마고치가 2레벨이 되었어요!!!\n");
+        printf("\n\t\t\t\t\t다마고치가 2레벨이 되었어요!!!\n");
         Sleep(1500);
         state.Level++;
         state.Exp = 0;
@@ -146,7 +174,7 @@ void WhenLevelUp(TamaState& state) {
     {
         system("cls");
         d.LevelUp();
-        printf("\t\t\t\t\t다마고치가 3레벨이 되었어요!!!\n");
+        printf("\n\t\t\t\t\t다마고치가 3레벨이 되었어요!!!\n");
         Sleep(1500);
         state.Level++;
         state.Exp = 0;
@@ -161,7 +189,7 @@ void WhenLevelUp(TamaState& state) {
     {
         system("cls");
         d.LevelUp();
-        printf("\t\t\t\t\t다마고치가 4레벨이 되었어요!!!\n");
+        printf("\n\t\t\t\t\t다마고치가 4레벨이 되었어요!!!\n");
         Sleep(1500);
         state.Level++;
         state.Exp = 0;
@@ -175,7 +203,7 @@ void WhenLevelUp(TamaState& state) {
     {
         system("cls");
         d.LevelUp();
-        printf("\t\t\t\t\t다마고치가 5레벨이 되었어요!!!\n");
+        printf("\n\t\t\t\t\t다마고치가 5레벨이 되었어요!!!\n");
         d.EvolutionShow(); // 다마고치가 5레벨이 되어 게임 종료
 
         WhichGame = '4';
@@ -223,11 +251,11 @@ int MiniGame::playChamChamCham(TamaState& state)
             system("cls");
             d.ChamChamChamLeft();
             if (PlayersHand == "L" || PlayersHand == "l") {
-                printf("\n\t\t\t\t\t\t\t너가 맞췄어!! \n");
+                printf("\n\t\t\t\t\t너가 맞췄어!! \n");
                 WinCount++;
             }
             else {
-                printf("\n\t\t\t\t\t\t\t못 맞췄어.. \n");
+                printf("\n\t\t\t\t\t못 맞췄어.. \n");
             }
         }
         else {
@@ -235,16 +263,16 @@ int MiniGame::playChamChamCham(TamaState& state)
             system("cls");
             d.ChamChamChamRight();
             if (PlayersHand == "R" || PlayersHand == "r") {
-                printf("\n\t\t\t\t\t\t\t너가 맞췄어!! \n");
+                printf("\n\t\t\t\t\t너가 맞췄어!! \n");
                 WinCount++;
             }
             else {
-                printf("\n\t\t\t\t\t\t\t못 맞췄어.. \n");
+                printf("\n\t\t\t\t\t못 맞췄어.. \n");
             }
         }
             PlayTime--;
             if (PlayTime > 0) {
-                printf("\t\t\t\t\t\t\t참참참~! ");
+                printf("\t\t\t\t\t참참참~! ");
                 std::cin >> PlayersHand;
             }
     }
@@ -302,8 +330,8 @@ int MiniGame::playTypingChallenge(TamaState& state)
     //setTimer 함수 사용하기
 
     printf("\n\t\t\t\t\t키보드 따라치기를 시작할게!\n\n");
-    printf("\t\t\t\t\t\t내가 출력해주는 문자열을 따라 치는 게임이야!\n\t\t\t\t\t똑같이 쓰지 못하면 너의 패배야!\n");
-    printf("\n\t\t\t\t\t\t문제 : ");
+    printf("\t\t\t\t\t내가 출력해주는 문자열을 따라 치는 게임이야!\n\t\t\t\t\t똑같이 쓰지 못하면 너의 패배야!\n");
+    printf("\n\t\t\t\t\t문제 : ");
     for (int i = 0; i < StringSize;i++) {
         RandomString[i] = rand() % 25 + 65; // 대문자만 나오게 랜덤 문자열 생성
         printf("%c", RandomString[i]);
@@ -313,7 +341,7 @@ int MiniGame::playTypingChallenge(TamaState& state)
     printf("\n\n");
 
     // 입력받기
-    printf("\t\t\t\t\t\t따라 써!! : ");
+    printf("\t\t\t\t\t따라 써!! : ");
     std::cin >> InputTyping;
  
     // 랜덤 생성된 문자열과 입력받은 문자열 비교
@@ -327,7 +355,7 @@ int MiniGame::playTypingChallenge(TamaState& state)
     
     if (PlayerWin) {
 
-        printf("\n\n\t\t\t\t\t\t똑같이 적었네! 너의 승리야!!!! \n");
+        printf("\n\n\t\t\t\t\t똑같이 적었네! 너의 승리야!!!! \n");
         if (state.Happiness >= 80) {
             RewardExp = (reward.TypingExpReward * 2);
         }
@@ -337,7 +365,7 @@ int MiniGame::playTypingChallenge(TamaState& state)
         else {
             RewardExp = reward.TypingExpReward;
         }
-        printf("\t\t\t\t\t\t보상으로 너에게 %.1f만큼의 경험치와 %d만큼의 돈을 줄게!\n\n", RewardExp, reward.TypingMoneyReward);
+        printf("\t\t\t\t\t보상으로 너에게 %.1f만큼의 경험치와 %d만큼의 돈을 줄게!\n\n", RewardExp, reward.TypingMoneyReward);
         //state.Exp += 50; // 테스트를 위해
         state.Exp += RewardExp;
         state.Money += reward.TypingMoneyReward;
@@ -346,8 +374,8 @@ int MiniGame::playTypingChallenge(TamaState& state)
 
     }
     else {
-        printf("\n\n\t\t\t\t\t\t똑같이 못 써서 너의 패배야ㅜㅜㅜ \n");
-        printf("\t\t\t\t\t\t그래도 노력했으니 %d만큼의 돈을 줄게!\n\n", reward.FailReward);
+        printf("\n\n\t\t\t\t\t똑같이 못 써서 너의 패배야ㅜㅜㅜ \n");
+        printf("\t\t\t\t\t그래도 노력했으니 %d만큼의 돈을 줄게!\n\n", reward.FailReward);
         state.Money += reward.FailReward;
     }
 
@@ -361,7 +389,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
     state.Energy -= reward.TreasureEnergyLoss;
     state.Energy = tama.LimitState(state.Energy);
 
-    int LimitMove = rand() & 4 + 2; // 랜덤한 보물찾기 위치 2 ~ 6
+    int LimitMove = rand() % 4 + 4; // 랜덤한 보물찾기 위치 4 ~ 8
     int PlayerMove = 0; // 플레이어가 이동한 횟수
     int RandomEvent = -1; // 이동 후 발생하는 무언가 있다 없다 랜덤한 이벤트
     int RandomEvent2 = -1; // 무언가 있을때 확인해보았을때 랜덤한 이벤트
@@ -369,13 +397,13 @@ int MiniGame::playTreasureHunt(TamaState& state)
     int PlayerSelect = -1; // 이동하기, 그만두기 행동
     int PlayerSelect2 = -1; // 무언가를 열어보기, 그만두기 행동
 
-    printf("\n\t\t\t\t\t\t보물찾기 시간~!!!\n");
+    printf("\n\t\t\t\t\t보물찾기 시간~!!!\n");
     while (LimitMove > PlayerMove || PlayerSelect!= 0) {
-        printf("\t\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
+        printf("\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
         std::cin >> PlayerSelect;
 
         while (PlayerSelect != 1 && PlayerSelect != 0) {
-            printf("\t\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
+            printf("\t\t\t\t\t이동하려면 1, 그만두려면 0을 입력해줘 ");
             std::cin >> PlayerSelect;
         }
        
@@ -383,12 +411,13 @@ int MiniGame::playTreasureHunt(TamaState& state)
         int RandomReward = rand() % 40 + 10; // 보물상자를 열었을때 10~50 사이의 경험치 또는 돈을 줄 예정
 
        if (PlayerSelect == 1) {
-            printf("\t\t\t\t\t\t다마고치가 이동중이야..!\n");
             PlayerMove++;
+            printf("\n\t\t\t\t\t다마고치가 이동중이야..!\n");
+            printf("보물위치 : %d 플레이어 이동 횟수 : %d \n", LimitMove, PlayerMove);
             if (PlayerMove == LimitMove) {
                 // 보물이 있는 위치
-                printf("\t\t\t\t\t\t보물 상자를 발견했어!!!!\n");
-                printf("\t\t\t\t\t\t보물 상자를 열어보니 ");
+                printf("\n\t\t\t\t\t보물 상자를 발견했어!!!!\n");
+                printf("\t\t\t\t\t보물 상자를 열어보니 ");
                 switch (RandomTreasureEvent) {
                 case 1:
                 {
@@ -408,7 +437,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
                     break;
                 case 3:
                 {
-                    printf("아무것도 없당.....!\n\t\t\t\t\t\t다음 기회를 노려보자...!\n");
+                    printf("아무것도 없당.....!\n\t\t\t\t\t다음 기회를 노려보자...!\n");
                     Sleep(1000);
                     return 0;
                 }
@@ -424,39 +453,39 @@ int MiniGame::playTreasureHunt(TamaState& state)
                 switch (RandomEvent) {
                 case 1:
                 {
-                    printf("\t\t\t\t\t\t아무것도 없다..!\n");
+                    printf("\n\t\t\t\t\t아무것도 없다..!\n");
                 }
                 break;
                 case 2:
                 {
-                    RandomEvent2 = rand() % 7 + 1;
-                    printf("\t\t\t\t\t\t무언가가 있다..!\n");
-                    printf("\t\t\t\t\t\t열어보려면 1번, 무시하려면 2번 : ");
+                    
+                    printf("\n\t\t\t\t\t무언가가 있다..!\n");
+                    printf("\t\t\t\t\t열어보려면 1번, 무시하려면 2번 : ");
                     std::cin >> PlayerSelect2;
-                   
+                    RandomEvent2 = rand() % 7 + 1; // 랜덤 이벤트 
                     if (PlayerSelect2 == 1) {
                         switch (RandomEvent2) {
                         case 1:
                         { 
-                            printf("\t\t\t\t\t\t대애박 돈을 주웠다!!!!..! + 돈 %d\n", SmallReward);
+                            printf("\n\t\t\t\t\t대애박 돈을 주웠다!!!!..! + 돈 %d\n", SmallReward);
                             state.Money += SmallReward;
                         }
                         break;
                         case 2:
                         {
-                            printf("\t\t\t\t\t\t귀여운 고양이를 보았다!! + 행복 %d \n", SmallReward);
+                            printf("\n\t\t\t\t\t귀여운 고양이를 보았다!! + 행복 %d \n", SmallReward);
                             state.Happiness += SmallReward;
                         }
                         break;
                         case 3:
                         {
-                            printf("\t\t\t\t\t\t시원한 호수를 보았다 수영해볼까?! + 청결도 %d \n", SmallReward);
+                            printf("\n\t\t\t\t\t시원한 호수를 보았다 수영해볼까?! + 청결도 %d \n", SmallReward);
                             state.Clean += SmallReward;
                         }
                         break;
                         case 4:
                         {
-                            printf("\t\t\t\t\t\t앗.. 늪이었잖아.....  - 청결도 %d \n", SmallReward);
+                            printf("\n\t\t\t\t\t앗.. 늪이었잖아.....  - 청결도 %d \n", SmallReward);
                             state.Clean -= SmallReward;
                             if (state.Clean < 0) {
                                 state.Clean = 0;
@@ -465,7 +494,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
                         break;
                         case 5:
                         {
-                            printf("\t\t\t\t\t\t하수구에 돈을 빠트렸어... - 돈 %d \n", SmallReward);
+                            printf("\n\t\t\t\t\t하수구에 돈을 빠트렸어... - 돈 %d \n", SmallReward);
                             state.Money -= SmallReward;
                             if (state.Money < 0) {
                                 state.Money = 0;
@@ -474,7 +503,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
                         break;
                         case 6:
                         {
-                            printf("\t\t\t\t\t\t벌레를 보았어... 기분 나빠 - 행복 %d \n", SmallReward);
+                            printf("\n\t\t\t\t\t벌레를 보았어... 기분 나빠 - 행복 %d \n", SmallReward);
                             state.Happiness -= SmallReward;
                             if (state.Happiness < 0) {
                                 state.Happiness = 0;
@@ -483,7 +512,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
                         break;
                         case 7:
                         {
-                            printf("\t\t\t\t\t\t자세히 보니 아무것도 없었어.. \n");
+                            printf("\n\t\t\t\t\t자세히 보니 아무것도 없었어.. \n");
                         }
                         break;
                         default:
