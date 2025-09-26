@@ -164,8 +164,8 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 
 void Tama::TakeBath(std::string TamaName, int& Clean)
 {
-	printf("\n\t\t\t\t\t%s이/가 목욕합니다. + 청결도 30 \n", TamaName.c_str());
-	Clean += 30;
+	printf("\n\t\t\t\t\t%s이/가 목욕합니다. + 청결도 50 \n", TamaName.c_str());
+	Clean += 50;
 	state.Clean = LimitState(state.Clean);
 	Sleep(1200);
 }

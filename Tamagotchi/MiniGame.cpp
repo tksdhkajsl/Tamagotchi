@@ -284,7 +284,7 @@ int MiniGame::playChamChamCham(TamaState& state)
             RewardExp = (reward.ChamExpReward * 2);
         }
         else if (state.Happiness >= 50) {
-            RewardExp += (reward.ChamExpReward * 1.5);
+            RewardExp = (reward.ChamExpReward * 1.5);
         }
         else {
             RewardExp = reward.ChamExpReward;
@@ -360,7 +360,7 @@ int MiniGame::playTypingChallenge(TamaState& state)
             RewardExp = (reward.TypingExpReward * 2);
         }
         else if (state.Happiness >= 50) {
-            RewardExp += (reward.TypingExpReward * 1.5);
+            RewardExp = (reward.TypingExpReward * 1.5);
         }
         else {
             RewardExp = reward.TypingExpReward;
@@ -475,12 +475,18 @@ int MiniGame::playTreasureHunt(TamaState& state)
                         {
                             printf("\n\t\t\t\t\t귀여운 고양이를 보았다!! + 행복 %d \n", SmallReward);
                             state.Happiness += SmallReward;
+                            if (state.Happiness >= 100) {
+                                state.Happiness = 100;
+                            }
                         }
                         break;
                         case 3:
                         {
                             printf("\n\t\t\t\t\t시원한 호수를 보았다 수영해볼까?! + 청결도 %d \n", SmallReward);
                             state.Clean += SmallReward;
+                            if (state.Clean >= 100) {
+                                state.Clean = 100;
+                            }
                         }
                         break;
                         case 4:
