@@ -124,28 +124,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="ChamChamCham.cpp" />
+    <ClCompile Include="Cookie.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Jelly.cpp" />
     <ClCompile Include="MiniGame.cpp" />
     <ClCompile Include="PlayGame.cpp" />
-    <ClCompile Include="ReactionGame.cpp" />
+    <ClCompile Include="RiceBall.cpp" />
     <ClCompile Include="Tama.cpp" />
-    <ClCompile Include="TamaEating.cpp" />
     <ClCompile Include="Tamagotchi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="TypingGame.cpp" />
+    <ClCompile Include="Tteokbokki.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
-    <ClInclude Include="ChamChamCham.h" />
+    <ClInclude Include="Cookie.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Jelly.h" />
     <ClInclude Include="MiniGame.h" />
     <ClInclude Include="PlayGame.h" />
-    <ClInclude Include="ReactionGame.h" />
+    <ClInclude Include="RiceBall.h" />
     <ClInclude Include="Tama.h" />
-    <ClInclude Include="TamaEating.h" />
-    <ClInclude Include="TypingGame.h" />
+    <ClInclude Include="Tteokbokki.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

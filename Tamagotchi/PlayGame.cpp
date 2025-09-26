@@ -121,7 +121,7 @@ void PlayGame::ShowMenu(TamaState& state)
         case 1:
             system("cls");
             display.ShowEatingTama();
-            tama.Eating(TamaName,state.Energy);
+            tama.Eating(TamaName,state);
             break;
         case 2:
             system("cls");

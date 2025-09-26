@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <string>
+#include <Windows.h>
 struct TamaState
 {
 	std::string TamaName;	// 다마고치 이름
@@ -20,10 +21,12 @@ class Tama
 {
 public:
 	Tama()=default;
-	~Tama();
+
+	// 밥 먹기와 식당에서의 먹는 내용을 자식 클래스로 나눔
+	virtual void EatSomething(std::string TamaName, TamaState& state);
 
 	//밥 먹기
-	void Eating(std::string TamaName, int& Energy);
+	void Eating(std::string TamaName, TamaState& state);
 
 	// 식당
 	void Restaurant(std::string TamaName, TamaState& state);
@@ -37,6 +40,10 @@ public:
 	// 에너지, 행복도, 청결도 0~100으로 제한하기
 	int LimitState(int StateIndex);
 
+	virtual ~Tama() {}
+
 protected:
 
+private :
+	TamaState State;
 };

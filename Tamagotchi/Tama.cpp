@@ -4,16 +4,21 @@
 #include <iostream>
 #include "PlayGame.h"
 #include <windows.h>
-
 #include "Display.h"
+
+#include "RiceBall.h"
+#include "Tteokbokki.h"
+#include "Jelly.h"
+#include "Cookie.h"
 
 Display display;
 TamaState state;
-// 다마고치의 상태 지수, 먹거나 구매하거나 자거나 목욕하는 행동
 
-Tama::~Tama()
-{
-}
+RiceBall riceball;
+Tteokbokki tteokbokki;
+Jelly jelly;
+Cookie cookie;
+// 다마고치의 상태 지수, 먹거나 구매하거나 자거나 목욕하는 행동
 
 int MAXSTATE = 100;
 int MINSTATE = 0;
@@ -29,15 +34,17 @@ int Tama::LimitState(int StateIndex) {	// 에너지, 행복도, 청결도는 0~1
 	return StateIndex;
 }
 
-// 더하는 수치 상수로 변경해주고 싶은데 나중에 하기..
-
-void Tama::Eating(std::string TamaName, int& Energy) 
+void Tama::EatSomething(std::string TamaName, TamaState& state)
 {
 	printf("\n\t\t\t\t\t\t%s이/가 밥을 먹습니다 냠냠. + 에너지 5 \n", TamaName.c_str());
-	Energy += 5;
-	Energy = LimitState(Energy);
+	state.Energy += 5;
+	state.Energy = LimitState(state.Energy);
+	Sleep(1200);
+}
 
-	Sleep(1200); // 화면이 다시 메인 표시 전까지 좀 기다려주기..
+void Tama::Eating(std::string TamaName, TamaState& state)
+{
+	EatSomething(TamaName, state);
 }
 
 void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금액 지불 부분
@@ -60,7 +67,6 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 	// 한 글자 이상이나 문자 입력하면 무한 루프 걸려서 조건문 수정
 	//while (WhichFood != 5) {
 	
-
 	while(true){
 		printf("\t\t\t\t\t어떤 음식을 구매하시겠어요? (소지금 : %d) ", state.Money);
 		std::cin >> InputRestMenu;
@@ -72,13 +78,7 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 			case 1:
 			{
 				if (state.Money >= 20) {
-					printf("\t\t\t\t\t%s이/가 식당에서 주먹밥을 먹습니다. + 에너지 20  \n", TamaName.c_str());
-					state.Energy += 20;
-					state.Happiness += 20;
-					state.Money -= 20;
-					state.Energy = LimitState(state.Energy);
-					state.Happiness = LimitState(state.Happiness);
-					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+					riceball.EatSomething(TamaName, state);
 				}
 				else {
 					printf("\t\t\t\t\t금액이 부족합니다.\n");
@@ -88,13 +88,7 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 			case 2:
 			{
 				if (state.Money >= 50) {
-					printf("\t\t\t\t\t%s이/가 식당에서 떡볶이를 먹습니다. + 에너지 50 + 행복도 30  \n", TamaName.c_str());
-					state.Energy += 50;
-					state.Happiness += 30;
-					state.Money -= 50;
-					state.Energy = LimitState(state.Energy);
-					state.Happiness = LimitState(state.Happiness);
-					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+					tteokbokki.EatSomething(TamaName, state);
 				}
 				else {
 					printf("\t\t\t\t\t금액이 부족합니다.\n");
@@ -104,11 +98,7 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 			case 3:
 			{
 				if (state.Money >= 5) {
-					printf("\t\t\t\t\t%s이/가 식당에서 딸기맛 젤리를 먹습니다. + 행복도 15  \n", TamaName.c_str());
-					state.Happiness += 15;
-					state.Money -= 5;
-					state.Happiness = LimitState(state.Happiness);
-					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+					jelly.EatSomething(TamaName, state);
 				}
 				else {
 					printf("\t\t\t\t\t금액이 부족합니다.\n");
@@ -118,14 +108,7 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 			case 4:
 			{
 				if (state.Money >= 10) {
-					printf("\t\t\t\t\t%s이/가 식당에서 초코 쿠키를 먹습니다. + 에너지 10 + 행복도 20  \n", TamaName.c_str());
-					state.Energy += 10;
-					state.Happiness += 20;
-					state.Money -= 10;
-
-					state.Energy = LimitState(state.Energy);
-					state.Happiness = LimitState(state.Happiness);
-					//printf("\t\t\t\t\t남은 소지금 : %4d\n", state.Money);
+					cookie.EatSomething(TamaName, state);
 				}
 				else {
 					printf("\t\t\t\t\t금액이 부족합니다.\n");
@@ -153,11 +136,6 @@ void Tama::Restaurant(std::string TamaName, TamaState& state) // 값 변화, 금
 	else {
 		printf("\t\t\t\t\t그런 음식은 없어요! \n");
 	}
-	//while (!(WhichFood >= 1) &&!( WhichFood <=5)) {
-	//	printf("\t\t\t\t\t그런 음식은 없어요! \n");
-	//	printf("\t\t\t\t\t어떤 음식을 구매하시겠어요? (소지금 : %d) ", state.Money);
-	//	std::cin >> WhichFood;
-	//}
 	}
 }
 

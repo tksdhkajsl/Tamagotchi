@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\음식">
+      <UniqueIdentifier>{51e34a71-ddc2-46f6-a83f-9f4a7a71bb54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Tamagotchi.cpp">
@@ -33,17 +36,17 @@
     <ClCompile Include="Action.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="ChamChamCham.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="RiceBall.cpp">
+      <Filter>소스 파일\음식</Filter>
     </ClCompile>
-    <ClCompile Include="ReactionGame.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Tteokbokki.cpp">
+      <Filter>소스 파일\음식</Filter>
     </ClCompile>
-    <ClCompile Include="TamaEating.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Jelly.cpp">
+      <Filter>소스 파일\음식</Filter>
     </ClCompile>
-    <ClCompile Include="TypingGame.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Cookie.cpp">
+      <Filter>소스 파일\음식</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,17 +65,17 @@
     <ClInclude Include="Action.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="ChamChamCham.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="RiceBall.h">
+      <Filter>소스 파일\음식</Filter>
     </ClInclude>
-    <ClInclude Include="ReactionGame.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Tteokbokki.h">
+      <Filter>소스 파일\음식</Filter>
     </ClInclude>
-    <ClInclude Include="TamaEating.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Jelly.h">
+      <Filter>소스 파일\음식</Filter>
     </ClInclude>
-    <ClInclude Include="TypingGame.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Cookie.h">
+      <Filter>소스 파일\음식</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
