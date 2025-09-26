@@ -520,6 +520,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
             break;
         }
     }
+    WhenLevelUp(state);
     return 0;
 }
 
