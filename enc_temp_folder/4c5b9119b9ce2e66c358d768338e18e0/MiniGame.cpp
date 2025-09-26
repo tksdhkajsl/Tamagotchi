@@ -413,7 +413,7 @@ int MiniGame::playTreasureHunt(TamaState& state)
        if (PlayerSelect == 1) {
             PlayerMove++;
             printf("\n\t\t\t\t\t다마고치가 이동중이야..!\n");
-            //printf("보물위치 : %d 플레이어 이동 횟수 : %d \n", LimitMove, PlayerMove);
+            printf("보물위치 : %d 플레이어 이동 횟수 : %d \n", LimitMove, PlayerMove);
             if (PlayerMove == LimitMove) {
                 // 보물이 있는 위치
                 printf("\n\t\t\t\t\t보물 상자를 발견했어!!!!\n");
