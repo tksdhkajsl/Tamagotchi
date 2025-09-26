@@ -3,7 +3,7 @@
 #include <iostream>
 #include <Windows.h>
 #include "Display.h"
-#include "Tama.h"
+#include "Tama.h"  //time이 없어 랜덤 값이 고정 출력되어 추가
 #include <cstdio>
 #include <string>
 
@@ -226,7 +226,7 @@ int MiniGame::playChamChamCham(TamaState& state)
          printf("\t\t\t\t\t참참참~! ");
          std::cin >> PlayersHand;
      }*/
-     //별도의 while문이 되어서 아래 게임 첫째판 종료 후 남은 게임판에서 해당 문으로 돌아오지 않음. 아래의 while문과 합치는 게 맞음
+     //별도의 while문이 되어서 아래 게임 첫째판 종료 후 남은 게임판에서 해당 while문으로 돌아오지 않음. 아래의 while문과 합치는 게 맞음
 
 
 
@@ -241,7 +241,7 @@ int MiniGame::playChamChamCham(TamaState& state)
 
         if (!(PlayersHand == 'L' || PlayersHand == 'l' || PlayersHand == 'R' || PlayersHand == 'r'))
         {
-            printf("\t\t\t\t\t잘못 입력 했습니다. 다시 입력해줘\n");
+            printf("\t\t\t\t\t잘못 입력했습니다. 다시 입력해줘!\n");
             continue;
         }
         // 참참참 머리 방향
