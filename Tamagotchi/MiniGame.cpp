@@ -97,7 +97,7 @@ void MiniGame::ShowMiniGame(TamaState& state)
                     }
                     else
                     {
-                        printf("\t\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
+                        printf("\t\t\t\t\t게임 횟수를 모두 소진해서 놀아줄 수 없어...\n\t\t\t\t\t다마고치를 재우면 게임 횟수가 초기화 돼!\n");
                     }
                 }
                 break;
