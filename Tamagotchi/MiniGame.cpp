@@ -1,9 +1,7 @@
 #include "MiniGame.h"
-#include "PlayGame.h"
 #include <random>
 #include <iostream>
 #include <Windows.h>
-#include <time.h>
 #include "Display.h"
 #include "Tama.h"
 #include <cstdio>
@@ -32,6 +30,7 @@ struct GAMEREWARDS {
     const int TypingHappyReward = 5;
     const int TypingCleanLoss = 20;
 
+    // 반응속도 테스트 미니게임 포기
     //const int ReactionEnergyLoss = 20;
     //const float ReactionExpReward = 40.0;
     //const int ReactionMoneyReward = 40;
@@ -42,6 +41,7 @@ struct GAMEREWARDS {
 
     const int FailReward = 5;
 };
+
 GAMEREWARDS reward;
 
     //char WhichGame = ' '; // int 로 했더니 입력받을 때 문자가 입력되면 무한루프에 빠져서 char로 고침
@@ -63,7 +63,7 @@ void MiniGame::ShowMiniGame(TamaState& state)
 {    
     WhichGame = 0;
     std::string InputGameMenu;
-    int ShowMenuCount = 0; // 게임 한번 한 이후에 다시 게임 메뉴 출력할때 한번만 출력하고싶어서
+    int ShowMenuCount = 0; // 게임 한번 한 이후에 다시 게임 메뉴 출력할때 메뉴는 한번만 출력하고싶어서
 
     system("cls");
     d.ShowUsual();
@@ -156,60 +156,39 @@ void MiniGame::ShowMiniGame(TamaState& state)
     }
     
 }
+
+// 레벨업시 문구 및 수치 변경
+void LevelUP(TamaState& state) {            
+    system("cls");
+    state.Level++;
+    state.Exp = 0;
+    state.Energy += 20;
+    state.Money += ((state.Level + 1) * 10);
+    d.LevelUp();
+    printf("\n\t\t\t\t\t다마고치가 %d레벨이 되었어요!!!\n",state.Level);
+    Sleep(1500);
+    WhichGame = '4';
+}
+
 void WhenLevelUp(TamaState& state) {
     // 경험치 모았을때 레벨업시키기
     if (state.Exp >= 50.0f && state.Level == 1) {
-        system("cls");
-        d.LevelUp();
-        printf("\n\t\t\t\t\t다마고치가 2레벨이 되었어요!!!\n");
-        Sleep(1500);
-        state.Level++;
-        state.Exp = 0;
-        state.Energy += 20;
-        state.Money += 20;
-
-        WhichGame = '4';
+        LevelUP(state);
     }
     else if (state.Exp >= 80.0f && state.Level == 2)
     {
-        system("cls");
-        d.LevelUp();
-        printf("\n\t\t\t\t\t다마고치가 3레벨이 되었어요!!!\n");
-        Sleep(1500);
-        state.Level++;
-        state.Exp = 0;
-        state.Energy += 20;
-        state.Money += 30;
-        //miniGame.ShowMiniGame(state);
-
-        WhichGame = '4';
-        
+        LevelUP(state);
     }
     else if (state.Exp >= 120.0f && state.Level == 3)
     {
-        system("cls");
-        d.LevelUp();
-        printf("\n\t\t\t\t\t다마고치가 4레벨이 되었어요!!!\n");
-        Sleep(1500);
-        state.Level++;
-        state.Exp = 0;
-        state.Energy += 20;
-        state.Money += 40;
-
-        WhichGame = '4';
-
+        LevelUP(state);
     }
     else if (state.Exp >= 150.0f && state.Level == 4)
     {
-        system("cls");
-        d.LevelUp();
-        printf("\n\t\t\t\t\t다마고치가 5레벨이 되었어요!!!\n");
+        LevelUP(state);
+        Sleep(1200);
         d.EvolutionShow(); // 다마고치가 5레벨이 되어 게임 종료
-
-        WhichGame = '4';
-
     }
-
 }
 float RewardExp = 0.0f;
 int MiniGame::playChamChamCham(TamaState& state)
@@ -392,8 +371,8 @@ int MiniGame::playTreasureHunt(TamaState& state)
     int LimitMove = rand() % 4 + 4; // 랜덤한 보물찾기 위치 4 ~ 8
     int PlayerMove = 0; // 플레이어가 이동한 횟수
     int RandomEvent = -1; // 이동 후 발생하는 무언가 있다 없다 랜덤한 이벤트
-    int RandomEvent2 = -1; // 무언가 있을때 확인해보았을때 랜덤한 이벤트
-    int RandomTreasureEvent = 0; // 보물상자 랜덤
+    int RandomEvent2 = -1; // 무언가를 확인해보았을때 발생하는 랜덤한 이벤트 
+    int RandomTreasureEvent = 0; // 보물상자 보상 랜덤 (경험치, 돈, 없음)
     int PlayerSelect = -1; // 이동하기, 그만두기 행동
     int PlayerSelect2 = -1; // 무언가를 열어보기, 그만두기 행동
 
@@ -534,16 +513,12 @@ int MiniGame::playTreasureHunt(TamaState& state)
                     break;
                 }
             }
-           
-           
         }
         else if (PlayerSelect == 0)
         {
             break;
         }
     }
-
-
     return 0;
 }
 

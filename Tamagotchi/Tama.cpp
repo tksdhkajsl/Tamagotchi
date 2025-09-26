@@ -11,7 +11,6 @@ Display display;
 TamaState state;
 // 다마고치의 상태 지수, 먹거나 구매하거나 자거나 목욕하는 행동
 
-
 Tama::~Tama()
 {
 }

@@ -104,16 +104,16 @@ void PlayGame::ShowMenu(TamaState& state)
         int ChooseMenu;
         while (true) {
 
-        printf("\t\t\t\t\t\t\t무엇을 하시겠어요? (예시 : 1) ");
-        std::cin >> InputMenu;
-        //showStatus(state);
+            printf("\t\t\t\t\t\t\t무엇을 하시겠어요? (예시 : 1) ");
+            std::cin >> InputMenu;
+            //showStatus(state);
 
-        if (InputMenu.length() == 1) {  // 한 글자만 입력되도록
-            ChooseMenu = InputMenu[0]-'0'; // -'0' 하면 정수로 변환된다
-            if (ChooseMenu >= 1 && ChooseMenu <= 5) {
-                break;
+            if (InputMenu.length() == 1) {  // 한 글자만 입력되도록
+                ChooseMenu = InputMenu[0]-'0'; // -'0' 하면 정수로 변환된다
+                if (ChooseMenu >= 1 && ChooseMenu <= 5) {
+                    break;
+                }
             }
-        }
         }
 
         switch (ChooseMenu)
@@ -122,7 +122,6 @@ void PlayGame::ShowMenu(TamaState& state)
             system("cls");
             display.ShowEatingTama();
             tama.Eating(TamaName,state.Energy);
-       
             break;
         case 2:
             system("cls");
@@ -131,7 +130,6 @@ void PlayGame::ShowMenu(TamaState& state)
             break;
         case 3:
             system("cls");
-
             display.ShowUsual();
             tama.Restaurant(TamaName,state);
             break;
@@ -153,8 +151,6 @@ void PlayGame::ShowMenu(TamaState& state)
             printf("\t\t\t\t메뉴 선택 중 에러가 발생했습니다. \n");
             break;
         }
- 
-
 }
 
 void PlayGame::showStatus(TamaState& state)
@@ -179,11 +175,6 @@ void PlayGame::showStatus(TamaState& state)
     else {
         printf("\t\t\t  에너지 : %3d/100\t행복도 : %3d/100\t경험치 : %3.1f\t청결도 : 더러움    돈 : %4d\n", state.Energy, state.Happiness, state.Exp, state.Money);
     }
-    //printf ( "\t\t\t\t\t\t\t에너지     :     %d\n" , Energy );
-    //printf ( "\t\t\t\t\t\t\t행복도     :     %d\n" ,Happiness );
-    //printf ( "\t\t\t\t\t\t\t경험치     :     %.1f\n",Exp );
-    //printf ( "\t\t\t\t\t\t\t청결도     :     %d\n",Clean);
-    //printf("\t\t\t\t\t\t\t========================\n");
     printf("\t\t\t=================================================================================================\n\n");
 }
 

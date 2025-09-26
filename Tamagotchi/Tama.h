@@ -20,7 +20,6 @@ class Tama
 {
 public:
 	Tama()=default;
-
 	~Tama();
 
 	//밥 먹기
